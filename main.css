@@ -1,0 +1,131 @@
+body {
+    background-color: #222333;
+    font-family: Arial;
+}
+
+h2 {
+    text-align: center;
+    color: #02b37d;
+}
+
+p {
+    color: #02b37d;
+}
+
+#header {
+    margin-left: 20%;
+    margin-right: 20%;
+    border-bottom: 5px solid #02b37d;
+}
+
+#header h1 {
+    text-align: center;
+    font-weight: normal;
+    font-size: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #02b37d;
+}
+
+#ui {
+    margin-top: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 20px;
+}
+
+#ui > div {
+    border: 5px solid #02b37d;
+}
+
+#stats {
+    width: 200px;
+    height: 400px;
+}
+
+#player {
+    position: relative;
+    width: 500px;
+    height: 500px;
+}
+
+#player img {
+    position: absolute;
+    width: 150px;
+    height: 300px;
+    image-rendering: pixelated;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#items {
+    width: 200px;
+    height: 400px;
+}
+
+.slot {
+    position: absolute;
+    display: flex;
+}
+
+.slot div {
+    width: 45px;
+    height: 45px;
+    border: 2px solid #02b37d;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#head-slot {
+    top: 50px;
+    left: 220px;
+}
+
+#torso-slot {
+    top: 160px;
+    left: 80px;
+}
+
+#right-hand-slot {
+    top: 240px;
+    left: 40px;
+}
+
+#left-hand-slot {
+    top: 240px;
+    right: 50px;
+}
+
+#legs-slot {
+    top: 320px;
+    right: 100px;
+}
+
+#right-foot-slot {
+    bottom: 50px;
+    left: 100px;
+}
+
+#left-foot-slot {
+    bottom: 50px;
+    right: 110px;
+}
+
+#start {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    background-color: #222333;
+    border: 5px solid #02b37d;
+    padding: 20px 50px;
+    font-size: 50px;
+    color: #02b37d;
+}
+
+#start:hover {
+    background-color: #2b423b;
+    cursor: pointer;
+}
