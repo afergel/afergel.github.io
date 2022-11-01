@@ -1,0 +1,11 @@
+[
+  {
+    "name": "worn dagger",
+    "type": "handheld",
+    "rarity": "common",
+    "health": 0,
+    "damage": 1,
+    "spell": null,
+    "spritesheet": "daggers.png"
+  }
+]

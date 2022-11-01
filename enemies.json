@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Gnome",
+    "health": 3,
+    "damage": 1
+  },
+  {
+    "name": "Rat",
+    "health": 2,
+    "damage": 2
+  }
+]
