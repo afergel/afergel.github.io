@@ -1,11 +1,57 @@
 [
   {
-    "name": "worn dagger",
+    "name": "Rusty dagger",
     "type": "handheld",
     "rarity": "common",
     "health": 0,
     "damage": 1,
+    "dodge": 0,
+    "crit": 0,
     "spell": null,
-    "spritesheet": "daggers.png"
+    "spritesheet": "images/LazarusSwords.png"
+  },
+  {
+    "name": "Steel knife",
+    "type": "handheld",
+    "rarity": "uncommon",
+    "health": 0,
+    "damage": 3,
+    "dodge": 0,
+    "crit": 0,
+    "spell": null,
+    "spritesheet": "images/LazarusSwords.png"
+  },
+  {
+    "name": "Bone sword",
+    "type": "handheld",
+    "rarity": "rare",
+    "health": 0,
+    "damage": 8,
+    "dodge": 0,
+    "crit": 25,
+    "spell": null,
+    "spritesheet": "images/LazarusSwords.png"
+  },
+  {
+    "name": "Soul cutter",
+    "type": "handheld",
+    "rarity": "mythical",
+    "health": 0,
+    "damage": 20,
+    "dodge": 0,
+    "crit": 50,
+    "spell": null,
+    "spritesheet": "images/LazarusSwords.png"
+  },
+  {
+    "name": "Cosmic blade",
+    "type": "handheld",
+    "rarity": "godly",
+    "health": 0,
+    "damage": 30,
+    "dodge": 0,
+    "crit": 80,
+    "spell": null,
+    "spritesheet": "images/LazarusSwords.png"
   }
 ]

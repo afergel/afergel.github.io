@@ -20,33 +20,23 @@ function Enemy(name, health, damage) {
     this.damage = damage
 }
 
-function Item(name, type, rarity, health, damage, spell, spritesheet) {
+function Item(name, type, rarity, health, damage, dodge, crit, spell, spritesheet) {
     this.name = name
     this.type = type
     this.rarity = rarity
     this.health = health
     this.damage = damage
+    this.dodge = dodge
+    this.crit = crit
     this.spell = spell
     this.spritesheet = spritesheet
 }
 
+fetch('https://afergel.github.io/items.json')
+    .then(response => response.json())
+    .then(data => console.log(data))
 
-var itemInventory = [
-    new Item("sword", "handheld", "mythical", 5, 6, null, "LazarusSwords.png"),
-    new Item("sword", "handheld", "mythical", 5, 6, null, "LazarusSwords.png"),
-    new Item("sword", "handheld", "common", 5, 6, null, "LazarusSwords.png"),
-    new Item("sword", "handheld", "uncommon", 5, 6, null, "LazarusSwords.png"),
-    new Item("sword", "handheld", "uncommon", 5, 6, null, "LazarusSwords.png"),
-    new Item("sword", "handheld", "common", 5, 6, null, "LazarusSwords.png"),
-    new Item("sword", "handheld", "rare", 5, 6, null, "LazarusSwords.png"),
-    new Item("sword", "handheld", "rare", 5, 6, null, "LazarusSwords.png"),
-    new Item("sword", "handheld", "godly", 5, 6, null, "LazarusSwords.png"),
-    new Item("sword", "handheld", "uncommon", 5, 6, null, "LazarusSwords.png"),
-    new Item("sword", "handheld", "uncommon", 5, 6, null, "LazarusSwords.png"),
-    new Item("sword", "handheld", "common", 5, 6, null, "LazarusSwords.png"),
-    new Item("sword", "handheld", "uncommon", 5, 6, null, "LazarusSwords.png"),
-    new Item("sword", "handheld", "rare", 5, 6, null, "LazarusSwords.png"),
-]
+var itemInventory = [];
 
 function loadMainMenu() {
     main = document.getElementById("main")
@@ -54,7 +44,7 @@ function loadMainMenu() {
         <div id = "ui">
             <div id = "stats"></div >
             <div id="player">
-                <img src="LazarusPlayer.png" alt="image of player character" />
+                <img src="images/LazarusPlayer.png" alt="image of player character" />
                 <div class="slot" id="head-slot">
                     <div id="head"></div>
                     <p>Head</p>
