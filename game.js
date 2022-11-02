@@ -1,39 +1,52 @@
-var level = 1;
-var exp = 0;
-var maxHealth = 5;
-var health = 5;
-var damage = 1;
+var level = 1
+var exp = 0
+var expNeeded = 10
+var maxHealth = 5
+var health = 5
+var damage = 1
 
-const itemSlots = new Map();
-itemSlots.set("head", null);
-itemSlots.set("torso", null);
-itemSlots.set("right-hand", null);
-itemSlots.set("left-hand", null);
-itemSlots.set("legs", null);
-itemSlots.set("right-foot", null);
-itemSlots.set("left-foot", null);
+const itemSlots = new Map()
+itemSlots.set("head", null)
+itemSlots.set("torso", null)
+itemSlots.set("right-hand", null)
+itemSlots.set("left-hand", null)
+itemSlots.set("legs", null)
+itemSlots.set("right-foot", null)
+itemSlots.set("left-foot", null)
 
-loadMainMenu();
-
-class Enemy {
-    constructor(name, health, damage) {
-        this.name = name;
-        this.health = health;
-        this.damage = damage;
-    }
+function Enemy(name, health, damage) {
+    this.name = name
+    this.health = health
+    this.damage = damage
 }
 
-class Item {
-    constructor(name, type, rarity, health, damage, spell, spritesheet) {
-        this.name = name;
-        this.type = type;
-        this.rarity = rarity;
-        this.health = health;
-        this.damage = damage;
-        this.spell = spell;
-        this.spritesheet = spritesheet;
-    }
+function Item(name, type, rarity, health, damage, spell, spritesheet) {
+    this.name = name
+    this.type = type
+    this.rarity = rarity
+    this.health = health
+    this.damage = damage
+    this.spell = spell
+    this.spritesheet = spritesheet
 }
+
+
+var itemInventory = [
+    new Item("sword", "handheld", "mythical", 5, 6, null, "LazarusSwords.png"),
+    new Item("sword", "handheld", "mythical", 5, 6, null, "LazarusSwords.png"),
+    new Item("sword", "handheld", "common", 5, 6, null, "LazarusSwords.png"),
+    new Item("sword", "handheld", "uncommon", 5, 6, null, "LazarusSwords.png"),
+    new Item("sword", "handheld", "uncommon", 5, 6, null, "LazarusSwords.png"),
+    new Item("sword", "handheld", "common", 5, 6, null, "LazarusSwords.png"),
+    new Item("sword", "handheld", "rare", 5, 6, null, "LazarusSwords.png"),
+    new Item("sword", "handheld", "rare", 5, 6, null, "LazarusSwords.png"),
+    new Item("sword", "handheld", "godly", 5, 6, null, "LazarusSwords.png"),
+    new Item("sword", "handheld", "uncommon", 5, 6, null, "LazarusSwords.png"),
+    new Item("sword", "handheld", "uncommon", 5, 6, null, "LazarusSwords.png"),
+    new Item("sword", "handheld", "common", 5, 6, null, "LazarusSwords.png"),
+    new Item("sword", "handheld", "uncommon", 5, 6, null, "LazarusSwords.png"),
+    new Item("sword", "handheld", "rare", 5, 6, null, "LazarusSwords.png"),
+]
 
 function loadMainMenu() {
     main = document.getElementById("main")
@@ -74,29 +87,67 @@ function loadMainMenu() {
             <div id="items"></div>
         </div >
         <button id="start" type="button" onclick="loadGameScreen()">ENTER THE TOWER</button>
-    `;
+    `
     loadStats()
+    loadItems()
 }
 
 function loadStats() {
-    var stats = document.getElementById("stats");
+    var stats = document.getElementById("stats")
     stats.innerHTML = `
         <h2><u>Stats</u></h2>
-        <p>Level: ${level}</p>
-        <p>Exp: ${exp}</p>
-        <p>Health: ${maxHealth}</p>
-        <p>Damage: ${damage}</p>
-    `;
+        <p><b>Level:</b> ${level}</p>
+        <p><b>Exp:</b> ${exp}/${expNeeded}</p>
+        <p><b>Health:</b> ${maxHealth}</p>
+        <p><b>Damage:</b> ${damage}</p>
+    `
 }
 
 function loadItems() {
+    var items = document.getElementById("items")
+    items.innerHTML = '<h2><u>Items</u></h2>'
+    if (itemInventory.length == 0) {
+        items.innerHTML += '<p>Looks like you don\'t have any items... venture into the tower to find some!</p>'
+    }
+    else {
+        items.innerHTML += '<div id="itemGrid"></div>'
+        var itemGrid = document.getElementById("itemGrid")
+        for (const item of itemInventory) {
 
+            var offset
+            switch (item.rarity) {
+                case "common":
+                    offset = 0
+                    break
+                case "uncommon":
+                    offset = 25
+                    break
+                case "rare":
+                    offset = 50
+                    break
+                case "mythical":
+                    offset = 75
+                    break
+                case "godly":
+                    offset = 100
+                    break
+                default:
+                    offset = 0;
+                    console.log(`ERROR: rarity for ${item} is invalid`)
+            }
+
+            itemGrid.innerHTML += `<div class="invItem" style="background-image: url('${item.spritesheet}'); background-position: ${offset}%"></div>`
+            console.log(item.spritesheet)
+        }
+    }
 }
 
 function loadGameScreen() {
-    main = document.getElementById("main");
+    main = document.getElementById("main")
     main.innerHTML = `
         <h2>Hmmm... looks like the game isn't finished yet :P</h2>
         <button id="start" type="button" onclick="loadMainMenu()">GO BACK</button>
-    `;
+    `
 }
+
+loadMainMenu()
