@@ -4,6 +4,8 @@ var expNeeded = 10
 var maxHealth = 5
 var health = 5
 var damage = 1
+var dodge = 0
+var crit = 0
 
 const itemSlots = new Map()
 itemSlots.set("head", null)
@@ -32,11 +34,17 @@ function Item(name, type, rarity, health, damage, dodge, crit, spell, spriteshee
     this.spritesheet = spritesheet
 }
 
+var itemPool = [];
+
 fetch('https://afergel.github.io/items.json')
     .then(response => response.json())
-    .then(data => console.log(data))
+    .then(data => {
+        itemPool = data
+        itemInventory = itemPool
+        loadMainMenu()
+    })
 
-var itemInventory = [];
+var itemInventory = itemPool;
 
 function loadMainMenu() {
     main = document.getElementById("main")
@@ -44,7 +52,7 @@ function loadMainMenu() {
         <div id = "ui">
             <div id = "stats"></div >
             <div id="player">
-                <img src="images/LazarusPlayer.png" alt="image of player character" />
+                <img src="images/Player.png" alt="image of player character" />
                 <div class="slot" id="head-slot">
                     <div id="head"></div>
                     <p>Head</p>
@@ -88,8 +96,11 @@ function loadStats() {
         <h2><u>Stats</u></h2>
         <p><b>Level:</b> ${level}</p>
         <p><b>Exp:</b> ${exp}/${expNeeded}</p>
-        <p><b>Health:</b> ${maxHealth}</p>
+        <p><b>Health:</b> ${health}</p>
         <p><b>Damage:</b> ${damage}</p>
+        <p><b>Crit:</b> ${crit}%</p>
+        <p><b>Dodge:</b> ${dodge}%</p>
+
     `
 }
 
@@ -127,7 +138,6 @@ function loadItems() {
             }
 
             itemGrid.innerHTML += `<div class="invItem" style="background-image: url('${item.spritesheet}'); background-position: ${offset}%"></div>`
-            console.log(item.spritesheet)
         }
     }
 }
@@ -139,5 +149,3 @@ function loadGameScreen() {
         <button id="start" type="button" onclick="loadMainMenu()">GO BACK</button>
     `
 }
-
-loadMainMenu()
