@@ -81,14 +81,33 @@ p {
     gap: 10px;
     grid-template-columns: 52px 52px 52px;
     grid-template-rows: 52px 52px 52px 52px 52px;
+    justify-content: center;
     padding: 10px;
     height: 280px;
+}
+
+#itemDisplay {
+    width: 200px;
+    height: 400px;
+}
+
+#itemDisplay #selectedItemSprite {
+    width: 100px;
+    height: 100px;
+    image-rendering: pixelated;
+    background-size: cover;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .invItem {
     border: 2px solid #02b37d;
     image-rendering: pixelated;
     background-size: cover;
+}
+
+.invItem:hover {
+    cursor: pointer;
 }
 
 .slot {
@@ -102,6 +121,10 @@ p {
     border: 2px solid #02b37d;
     margin-left: 5px;
     margin-right: 5px;
+}
+
+.slot div:hover {
+    cursor: pointer;
 }
 
 #head-slot {

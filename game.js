@@ -30,8 +30,29 @@ function Item(name, type, rarity, health, damage, dodge, crit, spell, spriteshee
     this.damage = damage
     this.dodge = dodge
     this.crit = crit
-    this.spell = spell
     this.spritesheet = spritesheet
+}
+
+Item.prototype.getSpriteOffset = function () {
+    switch (this.rarity) {
+        case "common":
+            return 0
+            break
+        case "uncommon":
+            return 25
+            break
+        case "rare":
+            return 50
+            break
+        case "mythical":
+            return 75
+            break
+        case "godly":
+            return 100
+            break
+        default:
+            console.log(`WARNING: rarity for "${this.name}" is invalid.`)
+    }
 }
 
 var itemPool = [];
@@ -39,12 +60,41 @@ var itemPool = [];
 fetch('https://afergel.github.io/items.json')
     .then(response => response.json())
     .then(data => {
-        itemPool = data
+        for (let i = 0; i < data.length; i++) {
+            itemPool[i] = Object.assign(new Item, data[i])
+        }
         itemInventory = itemPool
         loadMainMenu()
     })
 
+// Change this to empty when finished testing
 var itemInventory = itemPool;
+
+function displayItem(index) {
+    var item = itemInventory[index]
+    var itemDisplay = document.getElementById("itemDisplay")
+
+    itemDisplay.innerHTML = `
+        <h2>${item.name}</h2>
+        <div id="selectedItemSprite" style="background-image: url('${item.spritesheet}'); background-position: ${item.getSpriteOffset()}%"></div>
+    `
+
+    if (item.damage != 0) {
+        itemDisplay.innerHTML += `<p>+${item.damage} damage</p>`
+    }
+
+    if (item.health != 0) {
+        itemDisplay.innerHTML += `<p>+${item.health} health</p>`
+    }
+
+    if (item.crit != 0) {
+        itemDisplay.innerHTML += `<p>+${item.crit}% crit</p>`
+    }
+
+    if (item.dodge != 0) {
+        itemDisplay.innerHTML += `<p>+${item.dodge}% dodge</p>`
+    }
+}
 
 function loadMainMenu() {
     main = document.getElementById("main")
@@ -83,6 +133,7 @@ function loadMainMenu() {
                 </div>
             </div>
             <div id="items"></div>
+            <div id="itemDisplay"></div>
         </div >
         <button id="start" type="button" onclick="loadGameScreen()">ENTER THE TOWER</button>
     `
@@ -113,31 +164,10 @@ function loadItems() {
     else {
         items.innerHTML += '<div id="itemGrid"></div>'
         var itemGrid = document.getElementById("itemGrid")
-        for (const item of itemInventory) {
 
-            var offset
-            switch (item.rarity) {
-                case "common":
-                    offset = 0
-                    break
-                case "uncommon":
-                    offset = 25
-                    break
-                case "rare":
-                    offset = 50
-                    break
-                case "mythical":
-                    offset = 75
-                    break
-                case "godly":
-                    offset = 100
-                    break
-                default:
-                    offset = 0;
-                    console.log(`ERROR: rarity for ${item} is invalid`)
-            }
-
-            itemGrid.innerHTML += `<div class="invItem" style="background-image: url('${item.spritesheet}'); background-position: ${offset}%"></div>`
+        for (let i = 0; i < itemInventory.length; i++) {
+            var offset = itemInventory[i].getSpriteOffset()
+            itemGrid.innerHTML += `<div class="invItem" onclick="displayItem(${i})" style="background-image: url('${itemInventory[i].spritesheet}'); background-position: ${offset}%"></div>`
         }
     }
 }
