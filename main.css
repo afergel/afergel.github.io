@@ -100,6 +100,28 @@ p {
     margin-right: auto;
 }
 
+#itemDisplay p {
+    margin-left: 20px;
+}
+
+#itemDisplay button {
+    display: block;
+    width: 150px;
+    height: 30px;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #222333;
+    border: 2px solid #02b37d;
+    font-size: 16px;
+    color: #02b37d;
+}
+
+#itemDisplay button:hover {
+    background-color: #2b423b;
+    cursor: pointer;
+}
+
 .invItem {
     border: 2px solid #02b37d;
     image-rendering: pixelated;

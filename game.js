@@ -73,8 +73,7 @@ fetch('https://afergel.github.io/items.json')
         loadMainMenu()
     })
 
-// Change this to empty when finished testing
-var itemInventory = itemPool;
+var itemInventory = [];
 
 function displayItem(index) {
     var item = itemInventory[index]
@@ -218,6 +217,13 @@ function loadMainMenu() {
     `
     loadStats()
     loadItems()
+
+    equippedItems.forEach((value, key) => {
+        if (value != null) {
+            var item = Object.assign(new Item(), value)
+            document.getElementById(key).style = `background-image: url('${item.spritesheet}'); background-position: ${item.getSpriteOffset()}%`
+        }
+    })
 }
 
 function loadStats() {
