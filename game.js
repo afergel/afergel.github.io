@@ -1,20 +1,26 @@
 var level = 1
 var exp = 0
 var expNeeded = 10
-var maxHealth = 5
-var health = 5
-var damage = 1
-var dodge = 0
-var crit = 0
 
-const itemSlots = new Map()
-itemSlots.set("head", null)
-itemSlots.set("torso", null)
-itemSlots.set("right-hand", null)
-itemSlots.set("left-hand", null)
-itemSlots.set("legs", null)
-itemSlots.set("right-foot", null)
-itemSlots.set("left-foot", null)
+var baseMaxHealth = 5
+var baseDamage = 1
+var baseDodge = 0
+var baseCrit = 0
+
+var maxHealth 
+var health
+var damage
+var dodge
+var crit
+
+var equippedItems = new Map()
+equippedItems.set("head", null)
+equippedItems.set("torso", null)
+equippedItems.set("right-hand", null)
+equippedItems.set("left-hand", null)
+equippedItems.set("legs", null)
+equippedItems.set("right-foot", null)
+equippedItems.set("left-foot", null)
 
 function Enemy(name, health, damage) {
     this.name = name
@@ -22,7 +28,7 @@ function Enemy(name, health, damage) {
     this.damage = damage
 }
 
-function Item(name, type, rarity, health, damage, dodge, crit, spell, spritesheet) {
+function Item(name, type, rarity, health, damage, dodge, crit, spritesheet) {
     this.name = name
     this.type = type
     this.rarity = rarity
@@ -94,6 +100,79 @@ function displayItem(index) {
     if (item.dodge != 0) {
         itemDisplay.innerHTML += `<p>+${item.dodge}% dodge</p>`
     }
+
+    var equipMessage = "Equip"
+
+    if (item.type == "handheld") {
+        equipMessage += " right hand"
+    }
+    else if (item.type == "footwear") {
+        equipMessage += " right foot"
+    }
+
+    itemDisplay.innerHTML += `<button onclick="equipItem(${index}, false)">${equipMessage}</button>`
+
+    if (item.type == "handheld") {
+        itemDisplay.innerHTML += `<button onclick="equipItem(${index}, true)">Equip left hand</button>`
+    }
+    else if (item.type == "footwear") {
+        itemDisplay.innerHTML += `<button onclick="equipItem(${index}, true)">Equip left foot</button>`
+    }
+
+    itemDisplay.innerHTML += `<button onClick="discardItem(${index})">Discard</button>`
+}
+
+function equipItem(index, isLeft) {
+
+    var item = itemInventory[index]
+    var slotName = ""
+
+    switch (item.type) {
+        case "headgear":
+            slotName = "head"
+            break
+        case "handheld":
+            if (isLeft) {
+                slotName = "left-hand"
+            }
+            else {
+                slotName = "right-hand"
+            }
+            break
+        case "shirt":
+            slotName = "torso"
+            break
+        case "pants":
+            slotName = "legs"
+            break
+        case "footwear":
+            if (isLeft) {
+                slotName = "right-foot"
+            }
+            else {
+                slotName = "left-foot"
+            }
+            break
+        default:
+            console.log(`WARNING: item "${item.name}" has an invalid type.`)
+    }
+
+    document.getElementById(slotName).style = `background-image: url('${item.spritesheet}'); background-position: ${item.getSpriteOffset()}%`
+
+    if (equippedItems.get(slotName) != null) {
+        itemInventory.push(equippedItems.get(slotName))
+    }
+
+    equippedItems.set(slotName, item)
+
+    loadStats()
+    discardItem(index)
+}
+
+function discardItem(index) {
+    itemInventory.splice(index, 1)
+    loadItems()
+    document.getElementById("itemDisplay").innerHTML = ``
 }
 
 function loadMainMenu() {
@@ -125,10 +204,10 @@ function loadMainMenu() {
                 </div>
                 <div class="slot" id="right-foot-slot">
                     <p>Right foot</p>
-                    <div id="Right foot"></div>
+                    <div id="right-foot"></div>
                 </div>
                 <div class="slot" id="left-foot-slot">
-                    <div id="Left foot"></div>
+                    <div id="left-foot"></div>
                     <p>Left foot</p>
                 </div>
             </div>
@@ -142,12 +221,27 @@ function loadMainMenu() {
 }
 
 function loadStats() {
+
+    maxHealth = baseMaxHealth
+    damage = baseDamage
+    crit = baseCrit
+    dodge = baseDodge
+
+    equippedItems.forEach((value) => {
+        if (value != null) {
+            maxHealth += value.health
+            damage += value.damage
+            crit += value.crit
+            dodge += value.dodge
+        }
+    })
+
     var stats = document.getElementById("stats")
     stats.innerHTML = `
         <h2><u>Stats</u></h2>
         <p><b>Level:</b> ${level}</p>
         <p><b>Exp:</b> ${exp}/${expNeeded}</p>
-        <p><b>Health:</b> ${health}</p>
+        <p><b>Health:</b> ${maxHealth}</p>
         <p><b>Damage:</b> ${damage}</p>
         <p><b>Crit:</b> ${crit}%</p>
         <p><b>Dodge:</b> ${dodge}%</p>

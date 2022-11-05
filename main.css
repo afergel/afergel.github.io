@@ -121,6 +121,8 @@ p {
     border: 2px solid #02b37d;
     margin-left: 5px;
     margin-right: 5px;
+    image-rendering: pixelated;
+    background-size: cover;
 }
 
 .slot div:hover {
