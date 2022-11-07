@@ -2,20 +2,35 @@ var level = 1
 var exp = 0
 var expNeeded = 10
 
+// Player's base stats before equipment modifiers
 var baseMaxHealth = 5
 var baseDamage = 1
 var baseDodge = 0
 var baseCrit = 0
 
+// Player's stats after equipment modifiers
 var maxHealth 
 var health
 var damage
 var dodge
 var crit
 
+// Current floor (i.e. level) the player is on in the game
 var floor = 1
 const MAX_FLOOR = 20
 
+var currentEnemy
+var enemyDrops = []
+
+// Chance to drop for different item rarities
+var dropRarities = new Map()
+dropRarities.set("common", 0.5)
+dropRarities.set("uncommon", 0.2)
+dropRarities.set("rare", 0.05)
+dropRarities.set("mythical", 0.01)
+dropRarities.set("godly", 0.001)
+
+// Keeps track of what item is equipped in each equipment slot
 var equippedItems = new Map()
 equippedItems.set("head", null)
 equippedItems.set("torso", null)
@@ -46,6 +61,8 @@ function Item(name, type, rarity, health, damage, dodge, crit, spritesheet) {
     this.spritesheet = spritesheet
 }
 
+// Item sprites are stored in spritesheets that have different rarities of a "kind" of item (e.g. sword, bow)
+// This function returns the percent that the spritesheet should be offset by when displaying it as a CSS background
 Item.prototype.getSpriteOffset = function () {
     switch (this.rarity) {
         case "common":
@@ -68,9 +85,9 @@ Item.prototype.getSpriteOffset = function () {
     }
 }
 
-var itemPool = [];
-var enemyPool = [];
-var itemInventory = [];
+var itemPool = []; // List of all available items
+var enemyPool = []; // List of all available enemies
+var itemInventory = []; // List of items the player has, but hasn't equipped
 
 fetch('https://afergel.github.io/items.json')
     .then(response => response.json())
@@ -78,9 +95,8 @@ fetch('https://afergel.github.io/items.json')
         for (let i = 0; i < data.length; i++) {
             itemPool[i] = Object.assign(new Item, data[i])
         }
-        itemInventory = itemPool // DELETE WHEN DONE TESTING
-        loadMainMenu()
         fetchEnemies()
+        loadMainMenu()
     })
 
 function fetchEnemies() {
@@ -90,10 +106,10 @@ function fetchEnemies() {
             for (let i = 0; i < data.length; i++) {
                 enemyPool[i] = Object.assign(new Enemy, data[i])
             }
-            console.log(enemyPool)
         })
 }
 
+// Displays basic item information on the right side of the "Items" menu
 function displayItem(item) {
     var itemDisplay = document.getElementById("itemDisplay")
 
@@ -119,6 +135,7 @@ function displayItem(item) {
     }
 }
 
+// Displays buttons to equip or discard an item in the player's inventory
 function displayInventoryItem(index) {
     var item = itemInventory[index]
     displayItem(item)
@@ -128,24 +145,25 @@ function displayInventoryItem(index) {
     var equipMessage = "Equip"
 
     if (item.type == "handheld") {
-        equipMessage += " right hand"
+        equipMessage += " to right hand"
     }
     else if (item.type == "footwear") {
-        equipMessage += " right foot"
+        equipMessage += " to right foot"
     }
 
     itemDisplay.innerHTML += `<button onclick="equipItem(${index}, false)">${equipMessage}</button>`
 
     if (item.type == "handheld") {
-        itemDisplay.innerHTML += `<button onclick="equipItem(${index}, true)">Equip left hand</button>`
+        itemDisplay.innerHTML += `<button onclick="equipItem(${index}, true)">Equip to left hand</button>`
     }
     else if (item.type == "footwear") {
-        itemDisplay.innerHTML += `<button onclick="equipItem(${index}, true)">Equip left foot</button>`
+        itemDisplay.innerHTML += `<button onclick="equipItem(${index}, true)">Equip to left foot</button>`
     }
 
     itemDisplay.innerHTML += `<button onClick="discardItem(${index})">Discard</button>`
 }
 
+// Displays button to unequip an item that's already equipped
 function displayEquippedItem(slotName) {
     var item = equippedItems.get(slotName)
     displayItem(item)
@@ -154,6 +172,8 @@ function displayEquippedItem(slotName) {
     itemDisplay.innerHTML += `<button onclick="unequipItem('${slotName}')">Unequip</button>`
 }
 
+// Moves an item from the player's inventory to an equipment slot and updates the player's stats accordingly.
+// If an item is already in the slot, that item is moved back to the player's inventory
 function equipItem(index, isLeft) {
 
     var item = itemInventory[index]
@@ -201,6 +221,7 @@ function equipItem(index, isLeft) {
     discardItem(index)
 }
 
+// Moves an item from an equipment slot back to the player's inventory and updates the player's stats accordingly
 function unequipItem(slotName) {
     itemInventory.push(Object.assign(new Item(), equippedItems.get(slotName)))
     loadItems()
@@ -210,12 +231,15 @@ function unequipItem(slotName) {
     loadStats()
 }
 
+// Deletes an item from the player's inventory
 function discardItem(index) {
     itemInventory.splice(index, 1)
     loadItems()
     document.getElementById("itemDisplay").innerHTML = ``
 }
 
+// The menu the player sees when first loading the page
+// Shows player stats, equipped items, item inventory, and a button to start a game ("enter the tower")
 function loadMainMenu() {
     main = document.getElementById("main")
     main.innerHTML = `
@@ -268,6 +292,7 @@ function loadMainMenu() {
     })
 }
 
+// Calculates and display the player's stats after item modifiers are applied
 function loadStats() {
 
     maxHealth = baseMaxHealth
@@ -284,6 +309,8 @@ function loadStats() {
         }
     })
 
+    health = maxHealth
+
     var stats = document.getElementById("stats")
     stats.innerHTML = `
         <h2><u>Stats</u></h2>
@@ -297,6 +324,7 @@ function loadStats() {
     `
 }
 
+// Display the user's inventory as a grid of items
 function loadItems() {
     var items = document.getElementById("items")
     items.innerHTML = '<h2><u>Items</u></h2>'
@@ -314,10 +342,48 @@ function loadItems() {
     }
 }
 
+// The menu the player sees when starting a game
 function loadGameScreen() {
-    main = document.getElementById("main")
+
+    getEnemy()
+    var enemyMaxHealth = currentEnemy.health
+
+    var main = document.getElementById("main")
     main.innerHTML = `
-        <h2>Hmmm... looks like the game isn't finished yet :P</h2>
+        <div id="gameScreen">
+            <h2 id="enemyInfo"></h2>
+            <img id="enemySprite" alt="Picture of the enemy"></img>
+        </div>
+        <div id="buttons">
+            <button id="attackButton">ATTACK</button>
+            <button id="unknownAbility1">[LOCKED (LVL. 5)]</button>
+            <button id="unknownAbility2">[LOCKED (LVL. 10)]</button>
+            <button id="unknownAbility3">[LOCKED (LVL. 15)]</button>
+        </div>
+        <div id="health">
+            <h2>Health: ${health} / ${maxHealth}</h2>
+        </div>
+        <div id="textbox">
+            <p>There's nothing here right now...</p>
+        </div>
         <button id="start" type="button" onclick="loadMainMenu()">GO BACK</button>
     `
+    // REMOVE "GO BACK" BUTTON WHEN GAME SCREEN IS FINISHED
+
+    document.getElementById("enemyInfo").innerHTML = `${currentEnemy.name} (${currentEnemy.health}/${enemyMaxHealth})`
+    document.getElementById("enemySprite").src = currentEnemy.sprite
+}
+
+function getEnemy() {
+    var enemyIndex = Math.floor(Math.random() * enemyPool.length)
+    currentEnemy = Object.assign(new Enemy(), enemyPool[enemyIndex])
+
+    enemyDrops = [];
+    var strDrops = currentEnemy.lootTable;
+    for (let i = 0; i < strDrops.length; i++) {
+        var item = Object.assign(new Item(), itemPool.find(element => element.name == strDrops[i]))
+        enemyDrops.push(item)
+    }
+
+    console.log(enemyDrops) // REMOVE WHEN DONE TESTING
 }

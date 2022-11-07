@@ -14,7 +14,7 @@
     "damage": 2,
     "difficulty": 1,
     "expDrop": 1,
-    "lootTable": [ "Worn shirt", "Jeans", "Leather boot" ],
+    "lootTable": [ "Steel knife", "Bone sword" ],
     "sprite": "images/Eyeball.png"
   }
 ]
