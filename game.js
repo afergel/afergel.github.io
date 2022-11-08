@@ -431,6 +431,10 @@ function enemyAttack() {
         health -= currentEnemy.damage
         playerHealth.innerHTML = `<h2>Health: ${health} / ${maxHealth}</h2>`
         textbox.innerHTML += `<p>${currentEnemy.name} did ${currentEnemy.damage} damage to you.`
+        if (health <= 0) {
+            textbox.innerHTML += '<p>You were defeated!</p>'
+            document.getElementById("buttons").style.visibility = "hidden"
+        }
     }
 }
 
