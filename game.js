@@ -16,10 +16,11 @@ var dodge
 var crit
 
 // Current floor (i.e. level) the player is on in the game
-var floor = 1
+var floor
 const MAX_FLOOR = 20
 
 var currentEnemy
+var enemyMaxHealth
 var enemyDrops = []
 
 // Chance to drop for different item rarities
@@ -345,8 +346,7 @@ function loadItems() {
 // The menu the player sees when starting a game
 function loadGameScreen() {
 
-    getEnemy()
-    var enemyMaxHealth = currentEnemy.health
+    floor = 1
 
     var main = document.getElementById("main")
     main.innerHTML = `
@@ -355,7 +355,7 @@ function loadGameScreen() {
             <img id="enemySprite" alt="Picture of the enemy"></img>
         </div>
         <div id="buttons">
-            <button id="attackButton">ATTACK</button>
+            <button id="attackButton" onClick="playerAttack()">ATTACK</button>
             <button id="unknownAbility1">[LOCKED (LVL. 5)]</button>
             <button id="unknownAbility2">[LOCKED (LVL. 10)]</button>
             <button id="unknownAbility3">[LOCKED (LVL. 15)]</button>
@@ -363,13 +363,14 @@ function loadGameScreen() {
         <div id="health">
             <h2>Health: ${health} / ${maxHealth}</h2>
         </div>
-        <div id="textbox">
-            <p>There's nothing here right now...</p>
+        <div id="textbox"></div>
+        <div id="bottomButtons">
+            <button id="goBack" onclick="loadMainMenu()">GO BACK</button>
+            <button id="nextFloor" onclick="enterNextFloor()">NEXT FLOOR</button>
         </div>
-        <button id="start" type="button" onclick="loadMainMenu()">GO BACK</button>
     `
-    // REMOVE "GO BACK" BUTTON WHEN GAME SCREEN IS FINISHED
 
+    getEnemy()
     document.getElementById("enemyInfo").innerHTML = `${currentEnemy.name} (${currentEnemy.health}/${enemyMaxHealth})`
     document.getElementById("enemySprite").src = currentEnemy.sprite
 }
@@ -377,6 +378,7 @@ function loadGameScreen() {
 function getEnemy() {
     var enemyIndex = Math.floor(Math.random() * enemyPool.length)
     currentEnemy = Object.assign(new Enemy(), enemyPool[enemyIndex])
+    enemyMaxHealth = currentEnemy.health
 
     enemyDrops = [];
     var strDrops = currentEnemy.lootTable;
@@ -385,5 +387,56 @@ function getEnemy() {
         enemyDrops.push(item)
     }
 
-    console.log(enemyDrops) // REMOVE WHEN DONE TESTING
+    document.getElementById("enemyInfo").innerHTML = `${currentEnemy.name} (${currentEnemy.health}/${enemyMaxHealth})`
+    document.getElementById("enemySprite").src = currentEnemy.sprite
+    document.getElementById("enemySprite").style.visibility = "visible"
+}
+
+function playerAttack() {
+    var textbox = document.getElementById("textbox")
+    textbox.innerHTML = ``
+    var enemyInfo = document.getElementById("enemyInfo")
+
+    var didCrit = Math.floor(Math.random() * 100) < crit
+    if (didCrit) {
+        currentEnemy.health -= damage * 2
+        textbox.innerHTML += `<p>CRITICAL HIT! You did ${damage} damage to ${currentEnemy.name}.</p>`
+    }
+    else {
+        currentEnemy.health -= damage
+        textbox.innerHTML += `<p>You did ${damage} damage to ${currentEnemy.name}.</p>`
+    }
+
+    if (currentEnemy.health > 0) {
+        enemyInfo.innerHTML = `${currentEnemy.name} (${currentEnemy.health}/${enemyMaxHealth})`
+        enemyAttack()
+    }
+    else {
+        enemyInfo.innerHTML = ``
+        document.getElementById("enemySprite").style.visibility = "hidden";
+        textbox.innerHTML += `<p>${currentEnemy.name} was defeated!</p>`
+    }
+
+}
+
+function enemyAttack() {
+    var textbox = document.getElementById("textbox")
+    var playerHealth = document.getElementById("health")
+
+    var didDodge = Math.floor(Math.random() * 100) < dodge
+    if (didDodge) {
+        textbox.innerHTML += `<p>You dodged ${currentEnemy.name}'s attack.`
+    }
+    else {
+        health -= currentEnemy.damage
+        playerHealth.innerHTML = `<h2>Health: ${health} / ${maxHealth}</h2>`
+        textbox.innerHTML += `<p>${currentEnemy.name} did ${currentEnemy.damage} damage to you.`
+    }
+}
+
+function enterNextFloor() {
+    if (currentEnemy.health <= 0) {
+        floor += 1
+        getEnemy()
+    }
 }
