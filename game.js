@@ -146,19 +146,19 @@ function displayInventoryItem(index) {
     var equipMessage = "Equip"
 
     if (item.type == "handheld") {
-        equipMessage += " to right hand"
+        equipMessage += " right hand"
     }
     else if (item.type == "footwear") {
-        equipMessage += " to right foot"
+        equipMessage += " right foot"
     }
 
     itemDisplay.innerHTML += `<button onclick="equipItem(${index}, false)">${equipMessage}</button>`
 
     if (item.type == "handheld") {
-        itemDisplay.innerHTML += `<button onclick="equipItem(${index}, true)">Equip to left hand</button>`
+        itemDisplay.innerHTML += `<button onclick="equipItem(${index}, true)">Equip left hand</button>`
     }
     else if (item.type == "footwear") {
-        itemDisplay.innerHTML += `<button onclick="equipItem(${index}, true)">Equip to left foot</button>`
+        itemDisplay.innerHTML += `<button onclick="equipItem(${index}, true)">Equip left foot</button>`
     }
 
     itemDisplay.innerHTML += `<button onClick="discardItem(${index})">Discard</button>`
@@ -393,30 +393,32 @@ function getEnemy() {
 }
 
 function playerAttack() {
-    var textbox = document.getElementById("textbox")
-    textbox.innerHTML = ``
-    var enemyInfo = document.getElementById("enemyInfo")
-
-    var didCrit = Math.floor(Math.random() * 100) < crit
-    if (didCrit) {
-        currentEnemy.health -= damage * 2
-        textbox.innerHTML += `<p>CRITICAL HIT! You did ${damage} damage to ${currentEnemy.name}.</p>`
-    }
-    else {
-        currentEnemy.health -= damage
-        textbox.innerHTML += `<p>You did ${damage} damage to ${currentEnemy.name}.</p>`
-    }
-
     if (currentEnemy.health > 0) {
-        enemyInfo.innerHTML = `${currentEnemy.name} (${currentEnemy.health}/${enemyMaxHealth})`
-        enemyAttack()
-    }
-    else {
-        enemyInfo.innerHTML = ``
-        document.getElementById("enemySprite").style.visibility = "hidden";
-        textbox.innerHTML += `<p>${currentEnemy.name} was defeated!</p>`
-    }
+        var textbox = document.getElementById("textbox")
+        textbox.innerHTML = ``
+        var enemyInfo = document.getElementById("enemyInfo")
 
+        var didCrit = Math.floor(Math.random() * 100) < crit
+        if (didCrit) {
+            currentEnemy.health -= damage * 2
+            textbox.innerHTML += `<p>CRITICAL HIT! You did ${damage * 2} damage to ${currentEnemy.name}.</p>`
+        }
+        else {
+            currentEnemy.health -= damage
+            textbox.innerHTML += `<p>You did ${damage} damage to ${currentEnemy.name}.</p>`
+        }
+
+        if (currentEnemy.health > 0) {
+            enemyInfo.innerHTML = `${currentEnemy.name} (${currentEnemy.health}/${enemyMaxHealth})`
+            enemyAttack()
+        }
+        else {
+            enemyInfo.innerHTML = ``
+            document.getElementById("enemySprite").style.visibility = "hidden";
+            textbox.innerHTML += `<p>${currentEnemy.name} was defeated!</p>`
+            dropLoot()
+        }
+    }
 }
 
 function enemyAttack() {
@@ -439,8 +441,21 @@ function enemyAttack() {
 }
 
 function enterNextFloor() {
+    document.getElementById("textbox").innerHTML = ``
     if (currentEnemy.health <= 0) {
         floor += 1
         getEnemy()
+    }
+}
+
+function dropLoot() {
+    var textbox = document.getElementById("textbox")
+
+    for (const item of enemyDrops) {
+        var chance = dropRarities.get(item.rarity)
+        if (chance > Math.random()) {
+            textbox.innerHTML += `<p>You found a <span class="${item.rarity}">${item.name} (${item.rarity})</span>.</p>`
+            itemInventory.push(item);
+        }
     }
 }

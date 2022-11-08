@@ -292,3 +292,23 @@ p {
     cursor: pointer;
     background-color: #2b423b;
 }
+
+.common {
+    color: white;
+}
+
+.uncommon {
+    color: turquoise;
+}
+
+.rare {
+    color: lime;
+}
+
+.mythical {
+    color: yellow;
+}
+
+.godly {
+    color: deeppink;
+}
