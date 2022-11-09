@@ -91,6 +91,12 @@ p {
     height: 400px;
 }
 
+#itemDisplay h3 {
+    margin-top: -10px;
+    text-align: center;
+    font-size: 14px;
+}
+
 #itemDisplay #selectedItemSprite {
     width: 100px;
     height: 100px;

@@ -92,6 +92,7 @@ function displayItem(item) {
 
     itemDisplay.innerHTML = `
         <h2>${item.name}</h2>
+        <h3 class="${item.rarity}">${item.rarity[0].toUpperCase() + item.rarity.substring(1)}</h3>
         <div id="selectedItemSprite" style="background-image: url('${item.sprite}')"></div>
     `
 
@@ -287,6 +288,13 @@ function loadStats() {
     })
 
     health = maxHealth
+
+    if (crit > 100) {
+        crit = 100
+    }
+    if (dodge > 100) {
+        dodge = 100
+    }
 
     var stats = document.getElementById("stats")
     stats.innerHTML = `
