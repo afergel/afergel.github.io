@@ -176,10 +176,10 @@ function equipItem(index, isLeft) {
             break
         case "footwear":
             if (isLeft) {
-                slotName = "right-foot"
+                slotName = "left-foot"
             }
             else {
-                slotName = "left-foot"
+                slotName = "right-foot"
             }
             break
         default:
