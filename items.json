@@ -28,7 +28,7 @@
     "dodge": 0,
     "crit": 0,
     "sprite": "images/CorneaShield.png"
-  }
+  },
   {
     "name": "Plastic helmet",
     "type": "headgear",
