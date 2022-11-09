@@ -51,7 +51,7 @@ function Enemy(name, health, damage, difficulty, expDrop, lootTable, sprite) {
     this.sprite = sprite
 }
 
-function Item(name, type, rarity, health, damage, dodge, crit, spritesheet) {
+function Item(name, type, rarity, health, damage, dodge, crit, sprite) {
     this.name = name
     this.type = type
     this.rarity = rarity
@@ -59,31 +59,7 @@ function Item(name, type, rarity, health, damage, dodge, crit, spritesheet) {
     this.damage = damage
     this.dodge = dodge
     this.crit = crit
-    this.spritesheet = spritesheet
-}
-
-// Item sprites are stored in spritesheets that have different rarities of a "kind" of item (e.g. sword, bow)
-// This function returns the percent that the spritesheet should be offset by when displaying it as a CSS background
-Item.prototype.getSpriteOffset = function () {
-    switch (this.rarity) {
-        case "common":
-            return 0
-            break
-        case "uncommon":
-            return 25
-            break
-        case "rare":
-            return 50
-            break
-        case "mythical":
-            return 75
-            break
-        case "godly":
-            return 100
-            break
-        default:
-            console.log(`WARNING: rarity for "${this.name}" is invalid.`)
-    }
+    this.sprite = sprite
 }
 
 var itemPool = []; // List of all available items
@@ -116,7 +92,7 @@ function displayItem(item) {
 
     itemDisplay.innerHTML = `
         <h2>${item.name}</h2>
-        <div id="selectedItemSprite" style="background-image: url('${item.spritesheet}'); background-position: ${item.getSpriteOffset()}%"></div>
+        <div id="selectedItemSprite" style="background-image: url('${item.sprite}')"></div>
     `
 
     if (item.damage != 0) {
@@ -210,7 +186,7 @@ function equipItem(index, isLeft) {
             console.log(`WARNING: item "${item.name}" has an invalid type.`)
     }
 
-    document.getElementById(slotName).style = `background-image: url('${item.spritesheet}'); background-position: ${item.getSpriteOffset()}%`
+    document.getElementById(slotName).style = `background-image: url('${item.sprite}')`
 
     if (equippedItems.get(slotName) != null) {
         itemInventory.push(equippedItems.get(slotName))
@@ -288,7 +264,7 @@ function loadMainMenu() {
     equippedItems.forEach((value, key) => {
         if (value != null) {
             var item = Object.assign(new Item(), value)
-            document.getElementById(key).style = `background-image: url('${item.spritesheet}'); background-position: ${item.getSpriteOffset()}%`
+            document.getElementById(key).style = `background-image: url('${item.sprite}')`
         }
     })
 }
@@ -337,8 +313,7 @@ function loadItems() {
         var itemGrid = document.getElementById("itemGrid")
 
         for (let i = 0; i < itemInventory.length; i++) {
-            var offset = itemInventory[i].getSpriteOffset()
-            itemGrid.innerHTML += `<div class="invItem" onclick="displayInventoryItem(${i})" style="background-image: url('${itemInventory[i].spritesheet}'); background-position: ${offset}%"></div>`
+            itemGrid.innerHTML += `<div class="invItem" onclick="displayInventoryItem(${i})" style="background-image: url('${itemInventory[i].sprite}')"></div>`
         }
     }
 }

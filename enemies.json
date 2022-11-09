@@ -1,20 +1,29 @@
 [
   {
     "name": "Angry mushroom",
-    "health": 3,
+    "health": 4,
     "damage": 1,
     "difficulty": 1,
     "expDrop": 1,
-    "lootTable": [ "Rusty dagger", "Plastic helmet" ],
+    "lootTable": [ "Shroom cap", "Muddy shoe" ],
     "sprite": "images/AngryMushroom.png"
   },
   {
     "name": "Eyeball",
     "health": 2,
-    "damage": 2,
+    "damage": 3,
     "difficulty": 1,
     "expDrop": 1,
-    "lootTable": [ "Steel knife", "Bone sword" ],
+    "lootTable": [ "Blood knife", "Cornea shield", "Third eye" ],
     "sprite": "images/Eyeball.png"
+  },
+  {
+    "name": "Lil goblin",
+    "health": 3,
+    "damage": 2,
+    "difficulty": 1,
+    "expDrop": 2,
+    "lootTable": [ "Plastic helmet", "Plastic knife" ],
+    "sprite": "images/LilGoblin.png"
   }
 ]

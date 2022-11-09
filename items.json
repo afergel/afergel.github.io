@@ -1,54 +1,34 @@
 [
   {
-    "name": "Rusty dagger",
+    "name": "Plastic Knife",
     "type": "handheld",
     "rarity": "common",
     "health": 0,
     "damage": 1,
     "dodge": 0,
     "crit": 0,
-    "spritesheet": "images/Swords.png"
+    "sprite": "images/PlasticKnife.png"
   },
   {
-    "name": "Steel knife",
-    "type": "handheld",
-    "rarity": "uncommon",
-    "health": 0,
-    "damage": 3,
-    "dodge": 0,
-    "crit": 0,
-    "spritesheet": "images/Swords.png"
-  },
-  {
-    "name": "Bone sword",
+    "name": "Blood knife",
     "type": "handheld",
     "rarity": "rare",
     "health": 0,
-    "damage": 8,
+    "damage": 3,
     "dodge": 0,
-    "crit": 25,
-    "spritesheet": "images/Swords.png"
+    "crit": 10,
+    "sprite": "images/BloodKnife.png"
   },
   {
-    "name": "Soul cutter",
+    "name": "Cornea shield",
     "type": "handheld",
-    "rarity": "mythical",
-    "health": 0,
-    "damage": 20,
+    "rarity": "uncommon",
+    "health": 3,
+    "damage": 0,
     "dodge": 0,
-    "crit": 50,
-    "spritesheet": "images/Swords.png"
-  },
-  {
-    "name": "Cosmic blade",
-    "type": "handheld",
-    "rarity": "godly",
-    "health": 0,
-    "damage": 30,
-    "dodge": 0,
-    "crit": 80,
-    "spritesheet": "images/Swords.png"
-  },
+    "crit": 0,
+    "sprite": "images/CorneaShield.png"
+  }
   {
     "name": "Plastic helmet",
     "type": "headgear",
@@ -57,46 +37,36 @@
     "damage": 0,
     "dodge": 0,
     "crit": 0,
-    "spritesheet": "images/Helmets.png"
+    "sprite": "images/PlasticHelmet.png"
   },
   {
-    "name": "Steel helmet",
+    "name": "Shroom cap",
     "type": "headgear",
     "rarity": "uncommon",
-    "health": 3,
+    "health": 0,
     "damage": 0,
-    "dodge": 0,
-    "crit": 0,
-    "spritesheet": "images/Helmets.png"
-  },
-  {
-    "name": "Skeletal helmet",
-    "type": "headgear",
-    "rarity": "rare",
-    "health": 8,
-    "damage": 0,
-    "dodge": 0,
-    "crit": 0,
-    "spritesheet": "images/Helmets.png"
-  },
-  {
-    "name": "Helmet of souls",
-    "type": "headgear",
-    "rarity": "mythical",
-    "health": 20,
-    "damage": 2,
-    "dodge": 0,
-    "crit": 0,
-    "spritesheet": "images/Helmets.png"
-  },
-  {
-    "name": "Holy protector",
-    "type": "headgear",
-    "rarity": "godly",
-    "health": 40,
-    "damage": 5,
     "dodge": 10,
     "crit": 0,
-    "spritesheet": "images/Helmets.png"
+    "sprite": "images/ShroomCap.png"
+  },
+  {
+    "name": "Third eye",
+    "type": "headgear",
+    "rarity": "godly",
+    "health": 0,
+    "damage": 0,
+    "dodge": 0,
+    "crit": 100,
+    "sprite": "images/ThirdEye.png"
+  },
+  {
+    "name": "Muddy shoe",
+    "type": "footwear",
+    "rarity": "common",
+    "health": 0,
+    "damage": 0,
+    "crit": 0,
+    "dodge": 10,
+    "sprite": "images/MuddyShoe.png"
   }
 ]
