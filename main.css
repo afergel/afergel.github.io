@@ -42,7 +42,7 @@ p {
 
 #stats {
     width: 200px;
-    height: 400px;
+    height: 300px;
 }
 
 #stats p {
@@ -67,7 +67,8 @@ p {
 
 #items {
     width: 200px;
-    height: 400px;
+    height: 500px;
+    position: relative;
 }
 
 #items p {
@@ -80,15 +81,42 @@ p {
     display: grid;
     gap: 10px;
     grid-template-columns: 52px 52px 52px;
-    grid-template-rows: 52px 52px 52px 52px 52px;
+    grid-template-rows: 52px 52px 52px 52px 52px 52px;
     justify-content: center;
     padding: 10px;
-    height: 280px;
+    height: 380px;
+}
+
+#items #pageCount {
+    margin-top: 0px;
+    text-align: center;
+}
+
+#items button {
+    background-color: #222333;
+    color: #02b37d;
+    border: none;
+    position: absolute;
+    bottom: 22px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#items button:hover {
+    cursor: pointer;
+}
+
+#pageLeft {
+    left: 40px;
+}
+
+#pageRight {
+    right: 40px;
 }
 
 #itemDisplay {
     width: 200px;
-    height: 400px;
+    height: 500px;
 }
 
 #itemDisplay h3 {

@@ -2,6 +2,8 @@ var level = 1
 var exp = 0
 var expNeeded = 10
 
+var inventoryPage = 1
+
 // Player's base stats before equipment modifiers
 var baseMaxHealth = 5
 var baseDamage = 1
@@ -202,7 +204,7 @@ function equipItem(index, isLeft) {
 // Moves an item from an equipment slot back to the player's inventory and updates the player's stats accordingly
 function unequipItem(slotName) {
     itemInventory.push(Object.assign(new Item(), equippedItems.get(slotName)))
-    loadItems()
+    loadItems(inventoryPage)
     equippedItems.set(slotName, null)
     document.getElementById(slotName).style = ``
     document.getElementById("itemDisplay").innerHTML = ``
@@ -212,7 +214,7 @@ function unequipItem(slotName) {
 // Deletes an item from the player's inventory
 function discardItem(index) {
     itemInventory.splice(index, 1)
-    loadItems()
+    loadItems(inventoryPage)
     document.getElementById("itemDisplay").innerHTML = ``
 }
 
@@ -260,7 +262,7 @@ function loadMainMenu() {
         <button id="start" type="button" onclick="loadGameScreen()">ENTER THE TOWER</button>
     `
     loadStats()
-    loadItems()
+    loadItems(1)
 
     equippedItems.forEach((value, key) => {
         if (value != null) {
@@ -310,7 +312,10 @@ function loadStats() {
 }
 
 // Display the user's inventory as a grid of items
-function loadItems() {
+// Inventory is separated into pages that the player can click through with arrow buttons
+function loadItems(page) {
+    inventoryPage = page
+
     var items = document.getElementById("items")
     items.innerHTML = '<h2><u>Items</u></h2>'
     if (itemInventory.length == 0) {
@@ -320,13 +325,24 @@ function loadItems() {
         items.innerHTML += '<div id="itemGrid"></div>'
         var itemGrid = document.getElementById("itemGrid")
 
-        for (let i = 0; i < itemInventory.length; i++) {
+        for (let i = 18 * (page - 1); i < itemInventory.length && i < 18 * page; i++) {
             itemGrid.innerHTML += `<div class="invItem" onclick="displayInventoryItem(${i})" style="background-image: url('${itemInventory[i].sprite}')"></div>`
+        }
+
+        if (page != 1) {
+            items.innerHTML += `<button id="pageLeft" onclick="loadItems(${page - 1})">&lt;</button>`
+        }
+
+        items.innerHTML += `<p id="pageCount">Page ${page}</p>`
+
+        if ((page * 18) < itemInventory.length) {
+            items.innerHTML += `<button id="pageRight" onclick="loadItems(${page + 1})">&gt;</button>`
         }
     }
 }
 
 // The menu the player sees when starting a game
+// Displays the current enemy, player options, player health, a textbox to say what's happening, and buttons to leave or continue
 function loadGameScreen() {
 
     floor = 1
@@ -459,7 +475,7 @@ function gainExp(expGained) {
         baseMaxHealth += 3
         maxHealth += 3 // Increase the max health during the current run
         document.getElementById("health").innerHTML = `<h2>Health: ${health} / ${maxHealth}</h2>`
-        document.getElementById("textbox").innerHTML += `<p><b>LEVEL UP!</b> (+3 base health, +1 base damage)</p>`
+        document.getElementById("textbox").innerHTML += `<p class="uncommon"><b>LEVEL UP!</b> (+3 base health, +1 base damage)</p>`
         exp -= expNeeded
         expNeeded += 5
     }
