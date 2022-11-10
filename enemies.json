@@ -25,5 +25,32 @@
     "expDrop": 2,
     "lootTable": [ "Plastic helmet", "Plastic knife" ],
     "sprite": "images/LilGoblin.png"
+  },
+  {
+    "name": "Bloated butterfly",
+    "health": 15,
+    "damage": 6,
+    "difficulty": 2,
+    "expDrop": 5,
+    "lootTable": [ "Insect leg", "Butterfly wings" ],
+    "sprite": "images/BloatedButterfly.png"
+  },
+  {
+    "name": "Amateur magician",
+    "health": 12,
+    "damage": 10,
+    "difficulty": 2,
+    "expDrop": 5,
+    "lootTable": [ "Beginner's wand", "Magic jeans" ],
+    "sprite": "images/AmateurMagician.png"
+  },
+  {
+    "name": "Severed bug head",
+    "health": 20,
+    "damage": 8,
+    "difficulty": 2,
+    "expDrop": 7,
+    "lootTable": [ "Slimy boot", "Antennae" ],
+    "sprite": "images/SeveredBugHead.png"
   }
 ]
