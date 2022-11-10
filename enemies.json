@@ -36,13 +36,13 @@
     "sprite": "images/BloatedButterfly.png"
   },
   {
-    "name": "Amateur magician",
+    "name": "Amateur wizard",
     "health": 12,
     "damage": 10,
     "difficulty": 2,
     "expDrop": 5,
     "lootTable": [ "Beginner's wand", "Magic jeans" ],
-    "sprite": "images/AmateurMagician.png"
+    "sprite": "images/AmateurWizard.png"
   },
   {
     "name": "Severed bug head",
