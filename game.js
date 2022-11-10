@@ -358,6 +358,7 @@ function loadGameScreen() {
     document.getElementById("enemySprite").src = currentEnemy.sprite
 }
 
+// Gets a random enemy from the pool of available enemies and loads it into the game
 function getEnemy() {
     var enemyIndex = Math.floor(Math.random() * enemyPool.length)
     currentEnemy = Object.assign(new Enemy(), enemyPool[enemyIndex])
@@ -375,6 +376,7 @@ function getEnemy() {
     document.getElementById("enemySprite").style.visibility = "visible"
 }
 
+// Makes the player attack the enemy and checks to see if that killed the enemy
 function playerAttack() {
     if (currentEnemy.health > 0) {
         var textbox = document.getElementById("textbox")
@@ -398,12 +400,14 @@ function playerAttack() {
         else {
             enemyInfo.innerHTML = ``
             document.getElementById("enemySprite").style.visibility = "hidden";
-            textbox.innerHTML += `<p>${currentEnemy.name} was defeated!</p>`
+            textbox.innerHTML += `<p>${currentEnemy.name} was defeated! You gained ${currentEnemy.expDrop} exp.</p>`
+            gainExp(currentEnemy.expDrop)
             dropLoot()
         }
     }
 }
 
+// Makes the enemy attack the player and checks to see if that attack kills the player
 function enemyAttack() {
     var textbox = document.getElementById("textbox")
     var playerHealth = document.getElementById("health")
@@ -423,6 +427,7 @@ function enemyAttack() {
     }
 }
 
+// If the current enemy is defeated, go up one floor and spawn a new enemy
 function enterNextFloor() {
     document.getElementById("textbox").innerHTML = ``
     if (currentEnemy.health <= 0) {
@@ -431,6 +436,7 @@ function enterNextFloor() {
     }
 }
 
+// Goes through each item an enemy could possibly drop and randomly determines if each one drops or not
 function dropLoot() {
     var textbox = document.getElementById("textbox")
 
@@ -440,5 +446,21 @@ function dropLoot() {
             textbox.innerHTML += `<p>You found a <span class="${item.rarity}">${item.name} (${item.rarity})</span>.</p>`
             itemInventory.push(item);
         }
+    }
+}
+
+// Makes the player gain experience points and checks to see if they level up
+function gainExp(expGained) {
+    exp += expGained
+    if (exp >= expNeeded) {
+        level += 1
+        baseDamage += 1
+        damage += 1 // Increase the damage during the current run
+        baseMaxHealth += 3
+        maxHealth += 3 // Increase the max health during the current run
+        document.getElementById("health").innerHTML = `<h2>Health: ${health} / ${maxHealth}</h2>`
+        document.getElementById("textbox").innerHTML += `<p><b>LEVEL UP!</b> (+3 base health, +1 base damage)</p>`
+        exp -= expNeeded
+        expNeeded += 5
     }
 }
