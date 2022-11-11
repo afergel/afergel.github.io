@@ -17,9 +17,9 @@ var damage
 var dodge
 var crit
 
-// Current floor (i.e. level) the player is on in the game
-var floor
+var floor // Current floor (i.e. level) the player is on in the game
 const MAX_FLOOR = 20
+const DIFFICULTY_UP = 4 // Number of floors the player goes through until the difficulty of monsters increases
 
 var currentEnemy
 var enemyMaxHealth
@@ -376,8 +376,14 @@ function loadGameScreen() {
 
 // Gets a random enemy from the pool of available enemies and loads it into the game
 function getEnemy() {
-    var enemyIndex = Math.floor(Math.random() * enemyPool.length)
-    currentEnemy = Object.assign(new Enemy(), enemyPool[enemyIndex])
+    var possibleEnemies = [];
+    for (const enemy of enemyPool) {
+        if (enemy.difficulty >= floor / DIFFICULTY_UP && enemy.difficulty < (floor / DIFFICULTY_UP) + 1) {
+            possibleEnemies.push(Object.assign(new Enemy(), enemy))
+        }
+    }
+    var enemyIndex = Math.floor(Math.random() * possibleEnemies.length)
+    currentEnemy = Object.assign(new Enemy(), possibleEnemies[enemyIndex])
     enemyMaxHealth = currentEnemy.health
 
     enemyDrops = [];
