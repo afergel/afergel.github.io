@@ -475,14 +475,28 @@ function dropLoot() {
 function gainExp(expGained) {
     exp += expGained
     if (exp >= expNeeded) {
-        level += 1
-        baseDamage += 1
-        damage += 1 // Increase the damage during the current run
-        baseMaxHealth += 3
-        maxHealth += 3 // Increase the max health during the current run
-        document.getElementById("health").innerHTML = `<h2>Health: ${health} / ${maxHealth}</h2>`
-        document.getElementById("textbox").innerHTML += `<p class="uncommon"><b>LEVEL UP!</b> (+3 base health, +1 base damage)</p>`
+        levelUp()
+    }
+}
+
+function levelUp() {
+    var damageIncrease = 0
+    var healthIncrease = 0
+    var levelIncrease = 0
+
+    while (exp >= expNeeded) {
+        damageIncrease += 1
+        healthIncrease += 3
+        levelIncrease += 1
         exp -= expNeeded
         expNeeded += 5
     }
+
+    level += levelIncrease
+    baseDamage += damageIncrease
+    damage += damageIncrease // Increase the damage during the current run
+    baseMaxHealth += healthIncrease
+    maxHealth += healthIncrease // Increases the max health during the current run
+    document.getElementById("health").innerHTML = `<h2>Health: ${health} / ${maxHealth}</h2>`
+    document.getElementById("textbox").innerHTML += `<p class="uncommon"><b>LEVEL UP! (${level - levelIncrease} -&gt; ${level})</b> (+${healthIncrease} base health, +${damageIncrease} base damage)</p>`
 }
