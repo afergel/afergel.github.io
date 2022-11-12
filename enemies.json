@@ -60,7 +60,7 @@
     "difficulty": 3,
     "expDrop": 30,
     "lootTable": [],
-    "sprite": "images/Daisy.png"
+    "sprite": "images/DaisyTheFlower.png"
   },
   {
     "name": "Spooki ghost ooOOoOoohh",
@@ -69,7 +69,7 @@
     "difficulty": 4,
     "expDrop": 100,
     "lootTable": [],
-    "sprite": "SpookiGhost.png"
+    "sprite": "images/SpookiGhost.png"
   },
   {
     "name": "Jeremy",
@@ -78,6 +78,6 @@
     "difficulty": 5,
     "expDrop": 1000,
     "lootTable": [],
-    "sprite": "Jeremy.png"
+    "sprite": "images/Jeremy.png"
   }
 ]
