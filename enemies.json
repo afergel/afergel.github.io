@@ -52,5 +52,32 @@
     "expDrop": 7,
     "lootTable": [ "Slimy boot", "Antennae" ],
     "sprite": "images/SeveredBugHead.png"
+  },
+  {
+    "name": "Daisy the flower",
+    "health": 50,
+    "damage": 20,
+    "difficulty": 3,
+    "expDrop": 30,
+    "lootTable": [],
+    "sprite": "images/Daisy.png"
+  },
+  {
+    "name": "Spooki ghost ooOOoOoohh",
+    "health": 200,
+    "damage": 40,
+    "difficulty": 4,
+    "expDrop": 100,
+    "lootTable": [],
+    "sprite": "SpookiGhost.png"
+  },
+  {
+    "name": "Jeremy",
+    "health": 500,
+    "damage": 100,
+    "difficulty": 5,
+    "expDrop": 1000,
+    "lootTable": [],
+    "sprite": "Jeremy.png"
   }
 ]
