@@ -6,7 +6,7 @@
     "difficulty": 1,
     "expDrop": 1,
     "lootTable": [ "Shroom cap", "Muddy shoe" ],
-    "sprite": "images/AngryMushroom.png"
+    "sprite": "images/enemies/AngryMushroom.png"
   },
   {
     "name": "Eyeball",
@@ -15,7 +15,7 @@
     "difficulty": 1,
     "expDrop": 1,
     "lootTable": [ "Blood knife", "Cornea shield", "Third eye" ],
-    "sprite": "images/Eyeball.png"
+    "sprite": "images/enemies/Eyeball.png"
   },
   {
     "name": "Lil goblin",
@@ -24,7 +24,7 @@
     "difficulty": 1,
     "expDrop": 2,
     "lootTable": [ "Plastic helmet", "Plastic knife" ],
-    "sprite": "images/LilGoblin.png"
+    "sprite": "images/enemies/LilGoblin.png"
   },
   {
     "name": "Bloated butterfly",
@@ -33,7 +33,7 @@
     "difficulty": 2,
     "expDrop": 5,
     "lootTable": [ "Insect leg", "Butterfly wings" ],
-    "sprite": "images/BloatedButterfly.png"
+    "sprite": "images/enemies/BloatedButterfly.png"
   },
   {
     "name": "Amateur wizard",
@@ -42,7 +42,7 @@
     "difficulty": 2,
     "expDrop": 5,
     "lootTable": [ "Beginner's wand", "Magic jeans" ],
-    "sprite": "images/AmateurWizard.png"
+    "sprite": "images/enemies/AmateurWizard.png"
   },
   {
     "name": "Severed bug head",
@@ -51,7 +51,7 @@
     "difficulty": 2,
     "expDrop": 7,
     "lootTable": [ "Slimy boot", "Antennae" ],
-    "sprite": "images/SeveredBugHead.png"
+    "sprite": "images/enemies/SeveredBugHead.png"
   },
   {
     "name": "Daisy the flower",
@@ -60,7 +60,7 @@
     "difficulty": 3,
     "expDrop": 30,
     "lootTable": [],
-    "sprite": "images/DaisyTheFlower.png"
+    "sprite": "images/enemies/DaisyTheFlower.png"
   },
   {
     "name": "Spooki ghost ooOOoOoohh",
@@ -69,7 +69,7 @@
     "difficulty": 4,
     "expDrop": 100,
     "lootTable": [],
-    "sprite": "images/SpookiGhost.png"
+    "sprite": "images/enemies/SpookiGhost.png"
   },
   {
     "name": "Jeremy",
@@ -78,6 +78,6 @@
     "difficulty": 5,
     "expDrop": 1000,
     "lootTable": [],
-    "sprite": "images/Jeremy.png"
+    "sprite": "images/enemies/Jeremy.png"
   }
 ]

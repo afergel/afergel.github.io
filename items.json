@@ -7,7 +7,7 @@
     "damage": 1,
     "dodge": 0,
     "crit": 0,
-    "sprite": "images/PlasticKnife.png"
+    "sprite": "images/items/PlasticKnife.png"
   },
   {
     "name": "Blood knife",
@@ -17,7 +17,7 @@
     "damage": 3,
     "dodge": 0,
     "crit": 10,
-    "sprite": "images/BloodKnife.png"
+    "sprite": "images/items/BloodKnife.png"
   },
   {
     "name": "Cornea shield",
@@ -27,7 +27,7 @@
     "damage": 0,
     "dodge": 0,
     "crit": 0,
-    "sprite": "images/CorneaShield.png"
+    "sprite": "images/items/CorneaShield.png"
   },
   {
     "name": "Insect leg",
@@ -37,7 +37,7 @@
     "damage": 4,
     "dodge": 0,
     "crit": 0,
-    "sprite": "images/InsectLeg.png"
+    "sprite": "images/items/InsectLeg.png"
   },
   {
     "name": "Beginner's wand",
@@ -47,7 +47,7 @@
     "damage": 2,
     "dodge": 5,
     "crit": 5,
-    "sprite": "images/BeginnersWand.png"
+    "sprite": "images/items/BeginnersWand.png"
   },
   {
     "name": "Plastic helmet",
@@ -57,7 +57,7 @@
     "damage": 0,
     "dodge": 0,
     "crit": 0,
-    "sprite": "images/PlasticHelmet.png"
+    "sprite": "images/items/PlasticHelmet.png"
   },
   {
     "name": "Shroom cap",
@@ -67,7 +67,7 @@
     "damage": 0,
     "dodge": 10,
     "crit": 0,
-    "sprite": "images/ShroomCap.png"
+    "sprite": "images/items/ShroomCap.png"
   },
   {
     "name": "Antennae",
@@ -77,7 +77,7 @@
     "damage": 0,
     "dodge": 10,
     "crit": 10,
-    "sprite": "images/Antennae.png"
+    "sprite": "images/items/Antennae.png"
   },
   {
     "name": "Third eye",
@@ -87,7 +87,7 @@
     "damage": 0,
     "dodge": 0,
     "crit": 100,
-    "sprite": "images/ThirdEye.png"
+    "sprite": "images/items/ThirdEye.png"
   },
   {
     "name": "Butterfly wings",
@@ -97,7 +97,7 @@
     "damage": 0,
     "dodge": 20,
     "crit": 0,
-    "sprite": "images/ButterflyWings.png"
+    "sprite": "images/items/ButterflyWings.png"
   },
   {
     "name": "Magic jeans",
@@ -107,7 +107,7 @@
     "damage": 0,
     "dodge": 10,
     "crit": 10,
-    "sprite": "images/MagicJeans.png"
+    "sprite": "images/items/MagicJeans.png"
   },
   {
     "name": "Muddy shoe",
@@ -117,7 +117,7 @@
     "damage": 0,
     "crit": 0,
     "dodge": 10,
-    "sprite": "images/MuddyShoe.png"
+    "sprite": "images/items/MuddyShoe.png"
   },
   {
     "name": "Slimy boot",
@@ -127,6 +127,6 @@
     "damage": 0,
     "crit": 0,
     "dodge": 10,
-    "sprite": "images/SlimyBoot.png"
+    "sprite": "images/items/SlimyBoot.png"
   }
 ]
