@@ -244,9 +244,19 @@ p {
     margin-right: auto;
     margin-top: 100px;
     border: 5px solid #02b37d;
+    position: relative;
 }
 
-#gameScreen h2 {
+#gameScreen #floor {
+    position: absolute;
+    left: 10px;
+    margin-top: 10px;
+    padding: 5px;
+    color: #02b37d;
+    border: 2px solid #02b37d;
+}
+
+#gameScreen #enemyInfo {
     margin-top: 50px;
     color: dodgerblue;
 }

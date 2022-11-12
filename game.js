@@ -350,6 +350,7 @@ function loadGameScreen() {
     var main = document.getElementById("main")
     main.innerHTML = `
         <div id="gameScreen">
+            <h2 id="floor">Floor 1 / 20</h2>
             <h2 id="enemyInfo"></h2>
             <img id="enemySprite" alt="Picture of the enemy"></img>
         </div>
@@ -459,6 +460,7 @@ function enterNextFloor() {
     textbox.innerHTML = ``
     if (floor != MAX_FLOOR) {
         floor += 1
+        document.getElementById("floor").innerHTML = `Floor ${floor} / ${MAX_FLOOR}`
         getEnemy()
     }
     else {
