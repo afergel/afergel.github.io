@@ -372,6 +372,7 @@ function loadGameScreen() {
     getEnemy()
     document.getElementById("enemyInfo").innerHTML = `${currentEnemy.name} (${currentEnemy.health}/${enemyMaxHealth})`
     document.getElementById("enemySprite").src = currentEnemy.sprite
+    document.getElementById("nextFloor").style.visibility = "hidden"
 }
 
 // Gets a random enemy from the pool of available enemies and loads it into the game
@@ -421,10 +422,11 @@ function playerAttack() {
         }
         else {
             enemyInfo.innerHTML = ``
-            document.getElementById("enemySprite").style.visibility = "hidden";
+            document.getElementById("enemySprite").style.visibility = "hidden"
             textbox.innerHTML += `<p>${currentEnemy.name} was defeated! You gained ${currentEnemy.expDrop} exp.</p>`
             gainExp(currentEnemy.expDrop)
             dropLoot()
+            document.getElementById("nextFloor").style.visibility = "visible"
         }
     }
 }
@@ -450,11 +452,18 @@ function enemyAttack() {
 }
 
 // If the current enemy is defeated, go up one floor and spawn a new enemy
+// If the enemy on the last floor was defeated, print a "game won" message in the textbox instead
 function enterNextFloor() {
-    document.getElementById("textbox").innerHTML = ``
-    if (currentEnemy.health <= 0) {
+    document.getElementById("nextFloor").style.visibility = "hidden"
+    var textbox = document.getElementById("textbox")
+    textbox.innerHTML = ``
+    if (floor != MAX_FLOOR) {
         floor += 1
         getEnemy()
+    }
+    else {
+        textbox.innerHTML += `<p><span class="rare">Yay, you won! :D<span></p>`
+        document.getElementById("buttons").style.visibility = "hidden";;
     }
 }
 
