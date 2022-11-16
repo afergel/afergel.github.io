@@ -25,6 +25,9 @@ var currentEnemy
 var enemyMaxHealth
 var enemyDrops = []
 
+var regenerateUnlocked = false
+var regenerateButtonText = "LOCKED [LVL. 4]"
+
 // Chance to drop for different item rarities
 var dropRarities = new Map()
 dropRarities.set("common", 0.5)
@@ -356,9 +359,9 @@ function loadGameScreen() {
         </div>
         <div id="buttons">
             <button id="attackButton" onClick="playerAttack()">ATTACK</button>
-            <button id="unknownAbility1">[LOCKED (LVL. 5)]</button>
-            <button id="unknownAbility2">[LOCKED (LVL. 10)]</button>
-            <button id="unknownAbility3">[LOCKED (LVL. 15)]</button>
+            <button id="regenerateButton" onClick="playerRegenerate()">${regenerateButtonText}</button>
+            <button id="unknownAbility2">[LOCKED]</button>
+            <button id="unknownAbility3">[LOCKED]</button>
         </div>
         <div id="health">
             <h2>Health: ${health} / ${maxHealth}</h2>
@@ -432,6 +435,26 @@ function playerAttack() {
     }
 }
 
+// Restores health to the player, up to half of their max health (rounded up)
+// Also sets the "dodge" stat to 75% for the next turn
+function playerRegenerate() {
+    if (currentEnemy.health > 0 && regenerateUnlocked) {
+        var textbox = document.getElementById("textbox")
+        textbox.innerHTML = ``
+
+        // The amount of health restored can't go over the player's current max health
+        var restoredHealth = Math.min(maxHealth - health, Math.ceil(maxHealth / 2))
+        health += restoredHealth
+        textbox.innerHTML += `<p>You restored ${restoredHealth} health. Dodge set to 50% this turn.</p>`
+
+        // Set the dodge stat to 75%, let the enemy attack, then set it back to what it was before
+        var recordedDodge = dodge
+        dodge = 50
+        enemyAttack()
+        dodge = recordedDodge
+    }
+}
+
 // Makes the enemy attack the player and checks to see if that attack kills the player
 function enemyAttack() {
     var textbox = document.getElementById("textbox")
@@ -443,13 +466,14 @@ function enemyAttack() {
     }
     else {
         health -= currentEnemy.damage
-        playerHealth.innerHTML = `<h2>Health: ${health} / ${maxHealth}</h2>`
         textbox.innerHTML += `<p>${currentEnemy.name} did ${currentEnemy.damage} damage to you.`
         if (health <= 0) {
             textbox.innerHTML += '<p>You were defeated!</p>'
             document.getElementById("buttons").style.visibility = "hidden"
         }
     }
+
+    playerHealth.innerHTML = `<h2>Health: ${health} / ${maxHealth}</h2>`
 }
 
 // If the current enemy is defeated, go up one floor and spawn a new enemy
@@ -510,4 +534,11 @@ function levelUp() {
     maxHealth += healthIncrease // Increases the max health during the current run
     document.getElementById("health").innerHTML = `<h2>Health: ${health} / ${maxHealth}</h2>`
     document.getElementById("textbox").innerHTML += `<p class="uncommon"><b>LEVEL UP! (${level - levelIncrease} -&gt; ${level})</b> (+${healthIncrease} base health, +${damageIncrease} base damage)</p>`
+
+    // Unlock the "regenerate" ability if the player's health after leveling up is at least 4
+    if (level >= 4 && regenerateUnlocked == false) {
+        regenerateUnlocked = true
+        regenerateButtonText = "REGENERATE"
+        document.getElementById("regenerateButton").innerHTML = regenerateButtonText
+    }
 }
