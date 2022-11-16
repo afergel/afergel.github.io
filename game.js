@@ -28,6 +28,14 @@ var enemyDrops = []
 var regenerateUnlocked = false
 var regenerateButtonText = "LOCKED [LVL. 4]"
 
+var workOutUnlocked = false
+var workOutButtonText = "LOCKED [LVL. 8]"
+var workOutUsed = false
+var recordedDamage
+
+var focusStrikeUnlocked = false
+var focusStrikeButtonText = "LOCKED [LVL. 12]"
+
 // Chance to drop for different item rarities
 var dropRarities = new Map()
 dropRarities.set("common", 0.5)
@@ -360,8 +368,8 @@ function loadGameScreen() {
         <div id="buttons">
             <button id="attackButton" onClick="playerAttack()">ATTACK</button>
             <button id="regenerateButton" onClick="playerRegenerate()">${regenerateButtonText}</button>
-            <button id="unknownAbility2">[LOCKED]</button>
-            <button id="unknownAbility3">[LOCKED]</button>
+            <button id="workOutButton" onClick="playerWorkOut()">${workOutButtonText}</button>
+            <button id="focusStrikeButton" onClick="playerFocusStrike()">${focusStrikeButtonText}</button>
         </div>
         <div id="health">
             <h2>Health: ${health} / ${maxHealth}</h2>
@@ -401,6 +409,12 @@ function getEnemy() {
     document.getElementById("enemyInfo").innerHTML = `${currentEnemy.name} (${currentEnemy.health}/${enemyMaxHealth})`
     document.getElementById("enemySprite").src = currentEnemy.sprite
     document.getElementById("enemySprite").style.visibility = "visible"
+
+    // Set the player's damage to what it was before any buffs from the "work out" ability
+    if (workOutUsed) {
+        damage = recordedDamage
+        workOutUsed = false
+    }
 }
 
 // Makes the player attack the enemy and checks to see if that killed the enemy
@@ -453,6 +467,30 @@ function playerRegenerate() {
         enemyAttack()
         dodge = recordedDodge
     }
+}
+
+// Increases the player's attack damage for the current battle by 10%, rounded up
+function playerWorkOut() {
+    if (currentEnemy.health > 0 && workOutUnlocked) {
+        var textbox = document.getElementById("textbox")
+        textbox.innerHTML = ``
+
+        // If this ability hasn't been used this battle, remember how much damage the player started with
+        if (!workOutUsed) {
+            recordedDamage = damage;
+            workOutUsed = true
+        }
+
+        var damageGained = Math.ceil(damage / 10)
+        damage += damageGained
+        textbox.innerHTML += `<p>You gained ${damageGained} damage.</p>`
+
+        enemyAttack()
+    }
+}
+
+function playerFocusStrike() {
+
 }
 
 // Makes the enemy attack the player and checks to see if that attack kills the player
@@ -535,10 +573,17 @@ function levelUp() {
     document.getElementById("health").innerHTML = `<h2>Health: ${health} / ${maxHealth}</h2>`
     document.getElementById("textbox").innerHTML += `<p class="uncommon"><b>LEVEL UP! (${level - levelIncrease} -&gt; ${level})</b> (+${healthIncrease} base health, +${damageIncrease} base damage)</p>`
 
-    // Unlock the "regenerate" ability if the player's health after leveling up is at least 4
-    if (level >= 4 && regenerateUnlocked == false) {
+    // Unlock the "regenerate" ability if the player's level after leveling up is at least 4
+    if (level >= 4 && !regenerateUnlocked) {
         regenerateUnlocked = true
         regenerateButtonText = "REGENERATE"
         document.getElementById("regenerateButton").innerHTML = regenerateButtonText
+    }
+
+    // Unlock the "work out" ability if the player's level after leveling up is at least 8
+    if (level >= 8 && !workOutUnlocked) {
+        workOutUnlocked = true
+        workOutButtonText = "WORK OUT"
+        document.getElementById("workOutButton").innerHTML = workOutButtonText
     }
 }
