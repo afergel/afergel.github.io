@@ -489,8 +489,23 @@ function playerWorkOut() {
     }
 }
 
+// The player attacks with triple damage, but has a 50% chance to miss
 function playerFocusStrike() {
+    if (currentEnemy.health > 0 && focusStrikeUnlocked) {
+        var textbox = document.getElementById("textbox")
+        textbox.innerHTML = ``
 
+        if (Math.random() < 0.5) {
+            var recordedDamage = damage
+            damage *= 3
+            playerAttack()
+            damage = recordedDamage
+        }
+        else {
+            textbox.innerHTML += `<p>Your attack missed!</p>`
+            enemyAttack()
+        }
+    }
 }
 
 // Makes the enemy attack the player and checks to see if that attack kills the player
@@ -585,5 +600,12 @@ function levelUp() {
         workOutUnlocked = true
         workOutButtonText = "WORK OUT"
         document.getElementById("workOutButton").innerHTML = workOutButtonText
+    }
+
+    // Unlock the "focus strike" ability if the player's level after leveling up is at least 12
+    if (level >= 12 && !focusStrikeUnlocked) {
+        focusStrikeUnlocked = true
+        focusStrikeButtonText = "FOCUS STRIKE"
+        document.getElementById("focusStrikeButton").innerHTML = focusStrikeButtonText
     }
 }
