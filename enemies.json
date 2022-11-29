@@ -54,7 +54,7 @@
     "sprite": "images/enemies/SeveredBugHead.png"
   },
   {
-    "name": "Daisy the flower",
+    "name": "Daisy",
     "health": 50,
     "damage": 20,
     "difficulty": 3,
@@ -63,7 +63,25 @@
     "sprite": "images/enemies/DaisyTheFlower.png"
   },
   {
-    "name": "Spooki ghost ooOOoOoohh",
+    "name": "Cursed Pumpkin",
+    "health": 60,
+    "damage": 15,
+    "difficulty": 3,
+    "expDrop": 30,
+    "lootTable": [],
+    "sprite": "images/enemies/CursedPumpkin.png"
+  },
+  {
+    "name": "Winged Mask",
+    "health": 40,
+    "damage": 30,
+    "difficulty": 3,
+    "expDrop": 40,
+    "lootTable": [],
+    "sprite": "images/enemies/WingedMask.png"
+  },
+  {
+    "name": "Wandering Ghost",
     "health": 200,
     "damage": 40,
     "difficulty": 4,
