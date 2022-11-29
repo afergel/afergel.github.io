@@ -406,7 +406,29 @@ function getEnemy() {
         enemyDrops.push(item)
     }
 
+    var enemyNameColor
+    switch (currentEnemy.difficulty) {
+        case 1:
+            enemyNameColor = "#008FFF"
+            break
+        case 2:
+            enemyNameColor = "#FF00FF"
+            break
+        case 3:
+            enemyNameColor = "#FFFF00"
+            break
+        case 4:
+            enemyNameColor = "#FF5555"
+            break
+        case 5:
+            enemyNameColor = "#FFFFFF"
+            break
+        default:
+            enemyNameColor = "#FFFFFF"
+    }
+
     document.getElementById("enemyInfo").innerHTML = `${currentEnemy.name} (${currentEnemy.health}/${enemyMaxHealth})`
+    document.getElementById("enemyInfo").style = `color: ${enemyNameColor}`
     document.getElementById("enemySprite").src = currentEnemy.sprite
     document.getElementById("enemySprite").style.visibility = "visible"
 
