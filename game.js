@@ -583,7 +583,7 @@ function levelUp() {
     level += levelIncrease
     baseDamage += damageIncrease
     damage += damageIncrease // Increase the damage during the current run
-    if (workoutUsed) {
+    if (workOutUsed) {
         recordedDamage += damageIncrease
     }
     baseMaxHealth += healthIncrease
