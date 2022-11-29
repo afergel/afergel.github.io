@@ -583,6 +583,9 @@ function levelUp() {
     level += levelIncrease
     baseDamage += damageIncrease
     damage += damageIncrease // Increase the damage during the current run
+    if (workoutUsed) {
+        recordedDamage += damageIncrease
+    }
     baseMaxHealth += healthIncrease
     maxHealth += healthIncrease // Increases the max health during the current run
     document.getElementById("health").innerHTML = `<h2>Health: ${health} / ${maxHealth}</h2>`
