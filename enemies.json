@@ -81,13 +81,31 @@
     "sprite": "images/enemies/WingedMask.png"
   },
   {
-    "name": "Wandering Ghost",
+    "name": "Wandering Spirit",
     "health": 200,
-    "damage": 40,
+    "damage": 50,
     "difficulty": 4,
     "expDrop": 100,
     "lootTable": [],
     "sprite": "images/enemies/SpookiGhost.png"
+  },
+  {
+    "name": "Scion of Talos",
+    "health": 300,
+    "damage": 50,
+    "difficulty": 4,
+    "expDrop": 130,
+    "lootTable": [],
+    "sprite": "images/enemies/ScionOfTalos.png"
+  },
+  {
+    "name": "Doppelganger",
+    "health": 250,
+    "damage": 40,
+    "difficulty": 4,
+    "expDrop": 100,
+    "lootTable": [],
+    "sprite": "images/enemies/Doppelganger.png"
   },
   {
     "name": "Jeremy",
@@ -97,5 +115,23 @@
     "expDrop": 1000,
     "lootTable": [],
     "sprite": "images/enemies/Jeremy.png"
+  },
+  {
+    "name": "Face of the Abyss",
+    "health": 500,
+    "damage": 80,
+    "difficulty": 5,
+    "expDrop": 800,
+    "lootTable": [],
+    "sprite": "images/enemies/FaceOfTheAbyss.png"
+  },
+  {
+    "name": "The Light",
+    "health": 400,
+    "damage": 100,
+    "difficulty": 5,
+    "expDrop": 800,
+    "lootTable": [],
+    "sprite": "images/enemies/TheLight.png"
   }
 ]
