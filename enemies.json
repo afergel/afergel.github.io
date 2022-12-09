@@ -5,7 +5,7 @@
     "damage": 1,
     "difficulty": 1,
     "expDrop": 1,
-    "lootTable": [ "Shroom cap", "Muddy shoe" ],
+    "lootTable": [ "Shroom cap", "Muddy shoe", "Poison spike" ],
     "sprite": "images/enemies/AngryMushroom.png"
   },
   {
@@ -23,7 +23,7 @@
     "damage": 2,
     "difficulty": 1,
     "expDrop": 2,
-    "lootTable": [ "Plastic helmet", "Plastic knife" ],
+    "lootTable": [ "Plastic helmet", "Plastic knife" , "Kilt"],
     "sprite": "images/enemies/LilGoblin.png"
   },
   {
@@ -32,7 +32,7 @@
     "damage": 6,
     "difficulty": 2,
     "expDrop": 5,
-    "lootTable": [ "Insect leg", "Butterfly wings" ],
+    "lootTable": [ "Insect leg", "Butterfly wings", "Angel wings" ],
     "sprite": "images/enemies/BloatedButterfly.png"
   },
   {
@@ -50,7 +50,7 @@
     "damage": 8,
     "difficulty": 2,
     "expDrop": 7,
-    "lootTable": [ "Slimy boot", "Antennae" ],
+    "lootTable": [ "Slimy boot", "Antennae", "Bug eyes" ],
     "sprite": "images/enemies/SeveredBugHead.png"
   },
   {

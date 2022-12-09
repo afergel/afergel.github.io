@@ -23,11 +23,21 @@
     "name": "Cornea shield",
     "type": "handheld",
     "rarity": "uncommon",
-    "health": 3,
+    "health": 6,
     "damage": 0,
     "dodge": 0,
     "crit": 0,
     "sprite": "images/items/CorneaShield.png"
+  },
+  {
+    "name": "Poison spike",
+    "type": "handheld",
+    "rarity": "mythical",
+    "health": 0,
+    "damage": 1,
+    "dodge": 0,
+    "crit": 30,
+    "sprite": "images/items/PoisonSpike.png"
   },
   {
     "name": "Insect leg",
@@ -50,6 +60,16 @@
     "sprite": "images/items/BeginnersWand.png"
   },
   {
+    "name": "Deflector wand",
+    "type": "handheld",
+    "rarity": "mythical",
+    "health": 20,
+    "damage": 0,
+    "dodge": 5,
+    "crit": 0,
+    "sprite": "images/items/DeflectorWand.png"
+  },
+  {
     "name": "Plastic helmet",
     "type": "headgear",
     "rarity": "common",
@@ -62,7 +82,7 @@
   {
     "name": "Shroom cap",
     "type": "headgear",
-    "rarity": "uncommon",
+    "rarity": "rare",
     "health": 0,
     "damage": 0,
     "dodge": 10,
@@ -78,6 +98,16 @@
     "dodge": 10,
     "crit": 10,
     "sprite": "images/items/Antennae.png"
+  },
+  {
+    "name": "Bug eyes",
+    "type": "headgear",
+    "rarity": "rare",
+    "health": 0,
+    "damage": 0,
+    "dodge": 15,
+    "crit": 15,
+    "sprite": "images/items/BugEyes.png"
   },
   {
     "name": "Third eye",
@@ -98,6 +128,26 @@
     "dodge": 20,
     "crit": 0,
     "sprite": "images/items/ButterflyWings.png"
+  },
+  {
+    "name": "Angel wings",
+    "type": "shirt",
+    "rarity": "godly",
+    "health": 15,
+    "damage": 3,
+    "dodge": 25,
+    "crit": 15,
+    "sprite": "images/items/AngelWings.png"
+  },
+  {
+    "name": "Kilt",
+    "type": "pants",
+    "rarity": "uncommon",
+    "health": 1,
+    "damage": 0,
+    "dodge": 5,
+    "crit": 0,
+    "sprite": "images/items/Kilt.png"
   },
   {
     "name": "Magic jeans",
