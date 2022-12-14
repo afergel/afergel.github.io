@@ -41,7 +41,7 @@
     "damage": 10,
     "difficulty": 2,
     "expDrop": 5,
-    "lootTable": [ "Beginner's wand", "Magic jeans" ],
+    "lootTable": [ "Beginner's wand", "Magic jeans", "Deflector wand" ],
     "sprite": "images/enemies/AmateurWizard.png"
   },
   {
@@ -59,7 +59,7 @@
     "damage": 20,
     "difficulty": 3,
     "expDrop": 30,
-    "lootTable": [],
+    "lootTable": [ "Nature's Protector", "Vine whip", "Gardener pants" ],
     "sprite": "images/enemies/DaisyTheFlower.png"
   },
   {
@@ -68,7 +68,7 @@
     "damage": 15,
     "difficulty": 3,
     "expDrop": 30,
-    "lootTable": [],
+    "lootTable": [ "Horseless head", "Evil cape" ],
     "sprite": "images/enemies/CursedPumpkin.png"
   },
   {
@@ -77,7 +77,7 @@
     "damage": 30,
     "difficulty": 3,
     "expDrop": 40,
-    "lootTable": [],
+    "lootTable": [ "Stone mask" ],
     "sprite": "images/enemies/WingedMask.png"
   },
   {
@@ -95,7 +95,7 @@
     "damage": 50,
     "difficulty": 4,
     "expDrop": 130,
-    "lootTable": [],
+    "lootTable": [ "Iron stomper" ],
     "sprite": "images/enemies/ScionOfTalos.png"
   },
   {
@@ -113,7 +113,7 @@
     "damage": 100,
     "difficulty": 5,
     "expDrop": 1000,
-    "lootTable": [],
+    "lootTable": [ "Blade of Jeremy" ],
     "sprite": "images/enemies/Jeremy.png"
   },
   {
