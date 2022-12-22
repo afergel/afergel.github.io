@@ -79,7 +79,7 @@ var itemPool = []; // List of all available items
 var enemyPool = []; // List of all available enemies
 var itemInventory = []; // List of items the player has, but hasn't equipped
 
-fetch('https://afergel.github.io/items.json')
+fetch('https://afergel.github.io/lazarus/items.json')
     .then(response => response.json())
     .then(data => {
         for (let i = 0; i < data.length; i++) {
@@ -90,7 +90,7 @@ fetch('https://afergel.github.io/items.json')
     })
 
 function fetchEnemies() {
-    fetch('https://afergel.github.io/enemies.json')
+    fetch('https://afergel.github.io/lazarus/enemies.json')
         .then(response => response.json())
         .then(data => {
             for (let i = 0; i < data.length; i++) {
