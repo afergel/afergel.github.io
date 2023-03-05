@@ -95,7 +95,7 @@
     "damage": 50,
     "difficulty": 4,
     "expDrop": 130,
-    "lootTable": [ "Iron stomper" ],
+    "lootTable": [ "Iron stomper", "Bucket helmet" ],
     "sprite": "images/enemies/ScionOfTalos.png"
   },
   {
@@ -104,7 +104,7 @@
     "damage": 40,
     "difficulty": 4,
     "expDrop": 100,
-    "lootTable": [],
+    "lootTable": [ "Tentacle legs" ],
     "sprite": "images/enemies/Doppelganger.png"
   },
   {
@@ -113,7 +113,7 @@
     "damage": 100,
     "difficulty": 5,
     "expDrop": 1000,
-    "lootTable": [ "Blade of Jeremy" ],
+    "lootTable": [ "Blade of Jeremy", "Cool t-shirt" ],
     "sprite": "images/enemies/Jeremy.png"
   },
   {

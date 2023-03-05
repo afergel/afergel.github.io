@@ -170,6 +170,16 @@
     "sprite": "images/items/HorselessHead.png"
   },
   {
+    "name": "Bucket helmet",
+    "type": "headgear",
+    "rarity": "common",
+    "health": 40,
+    "damage": 0,
+    "dodge": 0,
+    "crit": 5,
+    "sprite": "images/items/BucketHelmet.png"
+  },
+  {
     "name": "Butterfly wings",
     "type": "shirt",
     "rarity": "uncommon",
@@ -200,6 +210,16 @@
     "sprite": "images/items/EvilCape.png"
   },
   {
+    "name": "Cool t-shirt",
+    "type": "shirt",
+    "rarity": "uncommon",
+    "health": 20,
+    "damage": 20,
+    "dodge": 10,
+    "crit": 20,
+    "sprite": "images/items/CoolTShirt.png"
+  },
+  {
     "name": "Kilt",
     "type": "pants",
     "rarity": "uncommon",
@@ -228,6 +248,16 @@
     "dodge": 5,
     "crit": 0,
     "sprite": "images/items/GardenerPants.png"
+  },
+  {
+    "name": "Tentacle legs",
+    "type": "pants",
+    "rarity": "common",
+    "health": 30,
+    "damage": 4,
+    "dodge": 5,
+    "crit": 0,
+    "sprite": "images/items/TentacleLegs.png"
   },
   {
     "name": "Muddy shoe",

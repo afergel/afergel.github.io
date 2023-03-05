@@ -1,4 +1,85 @@
 body {
+    background-color: aliceblue;
+}
+
+.navbar-brand {
+    font-size: 40px;
+}
+
+.navbar-text {
+    font-size: 20px;
+}
+
+main {
+    margin-top: 100px;
+    padding: 0px 20px;
+}
+
+.row > div {
+    padding: 10px;
+}
+
+.box {
+    padding: 10px;
+}
+
+.box h4, .box h1 {
+    text-align: center;
+}
+
+.box h1 {
+    margin-bottom: 30px;
+}
+
+#appgrid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.app {
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    margin-bottom: 30px;
+    border: 5px solid;
+    text-align: center;
+    padding-top: 5px;
+    background-position: 50% 50%;
+    cursor: pointer;
+}
+
+.app p {
+    margin-top: -40px;
+    font-size: 20px;
+}
+
+#lazarus {
+    background-image: url('LazarusThumbnail.png');
+}
+
+#comingSoon {
+    cursor: default;
+    background-color: #CCCCCC;
+}
+
+/*
+main {
+    padding: 0px 25px;
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+/*
+body {
     font-family: Arial;
     margin: 0;
     background-color: #FFFFFF;
@@ -109,3 +190,4 @@ body {
     cursor: default;
     background-color: #CCCCCC;
 }
+    */
