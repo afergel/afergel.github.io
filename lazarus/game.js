@@ -472,7 +472,7 @@ function playerAttack() {
 }
 
 // Restores health to the player, up to half of their max health (rounded up)
-// Also sets the "dodge" stat to 75% for the next turn
+// Also sets the "dodge" stat to 50% for the next turn
 function playerRegenerate() {
     if (currentEnemy.health > 0 && regenerateUnlocked) {
         var textbox = document.getElementById("textbox")
@@ -483,7 +483,7 @@ function playerRegenerate() {
         health += restoredHealth
         textbox.innerHTML += `<p>You restored ${restoredHealth} health. Dodge set to 50% this turn.</p>`
 
-        // Set the dodge stat to 75%, let the enemy attack, then set it back to what it was before
+        // Set the dodge stat to 50%, let the enemy attack, then set it back to what it was before
         var recordedDodge = dodge
         dodge = 50
         enemyAttack()
@@ -503,9 +503,8 @@ function playerWorkOut() {
             workOutUsed = true
         }
 
-        var damageGained = Math.ceil(damage / 10)
-        damage += damageGained
-        textbox.innerHTML += `<p>You gained ${damageGained} damage.</p>`
+        textbox.innerHTML += `<p>You gained ${damage} damage.</p>`
+        damage *= 2;
 
         enemyAttack()
     }
