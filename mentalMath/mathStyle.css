@@ -1,0 +1,32 @@
+﻿body {
+    background-color: aliceblue;
+}
+
+.navbar-brand {
+    font-size: 40px;
+}
+
+.navbar-text {
+    font-size: 20px;
+}
+
+main {
+    margin-top: 150px;
+}
+
+#gameArea {
+    width: 60%;
+    height: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+#gameArea h4 {
+    margin-top: 100px;
+}
+
+@media (max-width: 800px) {
+    #gameArea {
+        width: 90%;
+    }
+}
