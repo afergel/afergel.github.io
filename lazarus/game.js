@@ -471,6 +471,9 @@ function getEnemy() {
     document.getElementById("enemySprite").src = currentEnemy.sprite
     document.getElementById("enemySprite").style.visibility = "visible"
 
+    // Set the focus on the "Attack" button so the player can just spam enter for the earlier floors
+    document.getElementById("attackButton").focus();
+
     // Set the player's damage to what it was before any buffs from the "work out" ability
     if (workOutUsed) {
         damage = recordedDamage
@@ -506,6 +509,7 @@ function playerAttack() {
             gainExp(currentEnemy.expDrop)
             dropLoot()
             document.getElementById("nextFloor").style.visibility = "visible"
+            document.getElementById("nextFloor").focus();
         }
     }
 }
