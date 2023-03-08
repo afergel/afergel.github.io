@@ -90,6 +90,26 @@
     "sprite": "images/items/VineWhip.png"
   },
   {
+    "name": "Spirit scimitar",
+    "type": "handheld",
+    "rarity": "mythical",
+    "health": 0,
+    "damage": 15,
+    "dodge": 5,
+    "crit": 10,
+    "sprite": "images/items/SpiritScimitar.png"
+  },
+  {
+    "name": "Wayfinder's Candle",
+    "type": "handheld",
+    "rarity": "mythical",
+    "health": 0,
+    "damage": 0,
+    "dodge": 10,
+    "crit": 75,
+    "sprite": "images/items/WayfindersCandle.png"
+  },
+  {
     "name": "Blade of Jeremy",
     "type": "handheld",
     "rarity": "godly",
@@ -180,6 +200,16 @@
     "sprite": "images/items/BucketHelmet.png"
   },
   {
+    "name": "Second head",
+    "type": "headgear",
+    "rarity": "mythical",
+    "health": 100,
+    "damage": 40,
+    "dodge": 0,
+    "crit": 20,
+    "sprite": "images/items/SecondHead.png"
+  },
+  {
     "name": "Butterfly wings",
     "type": "shirt",
     "rarity": "uncommon",
@@ -208,6 +238,16 @@
     "dodge": 10,
     "crit": 10,
     "sprite": "images/items/EvilCape.png"
+  },
+  {
+    "name": "Bat wings",
+    "type": "shirt",
+    "rarity": "uncommon",
+    "health": 10,
+    "damage": 10,
+    "dodge": 15,
+    "crit": 0,
+    "sprite": "images/items/BatWings.png"
   },
   {
     "name": "Cool t-shirt",

@@ -77,7 +77,7 @@
     "damage": 30,
     "difficulty": 3,
     "expDrop": 40,
-    "lootTable": [ "Stone mask" ],
+    "lootTable": [ "Stone mask", "Bat wings" ],
     "sprite": "images/enemies/WingedMask.png"
   },
   {
@@ -86,7 +86,7 @@
     "damage": 50,
     "difficulty": 4,
     "expDrop": 100,
-    "lootTable": [],
+    "lootTable": [ "Spirit scimitar" ],
     "sprite": "images/enemies/SpookiGhost.png"
   },
   {
@@ -122,7 +122,7 @@
     "damage": 80,
     "difficulty": 5,
     "expDrop": 800,
-    "lootTable": [],
+    "lootTable": [ "Second head" ],
     "sprite": "images/enemies/FaceOfTheAbyss.png"
   },
   {
@@ -131,7 +131,7 @@
     "damage": 100,
     "difficulty": 5,
     "expDrop": 800,
-    "lootTable": [],
+    "lootTable": [ "Wayfinder's Candle" ],
     "sprite": "images/enemies/TheLight.png"
   }
 ]
