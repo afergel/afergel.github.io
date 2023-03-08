@@ -79,6 +79,37 @@ var itemPool = []; // List of all available items
 var enemyPool = []; // List of all available enemies
 var itemInventory = []; // List of items the player has, but hasn't equipped
 
+// Load stats from save file
+if (localStorage.getItem("level") != null)
+{
+    level = parseInt(localStorage.getItem("level"));
+    exp = parseInt(localStorage.getItem("exp"));
+    expNeeded = parseInt(localStorage.getItem("expNeeded"));
+    baseMaxHealth = 2 + (level * 3);
+    baseDamage = level;
+
+    if (level >= 4)
+    {
+        regenerateUnlocked = true;
+        regenerateButtonText = "REGENERATE";
+    }
+
+    if (level >= 8)
+    {
+        workOutUnlocked = true;
+        workOutButtonText = "WORK OUT";
+    }
+
+    if (level >= 12)
+    {
+        focusStrikeUnlocked = true;
+        focusStrikeButtonText = "FOCUS STRIKE";
+    }
+
+    equippedItems = new Map(JSON.parse(localStorage.getItem("equippedItems")));
+    itemInventory = JSON.parse(localStorage.getItem("itemInventory"));
+}
+
 fetch('https://afergel.github.io/lazarus/items.json')
     .then(response => response.json())
     .then(data => {
@@ -231,7 +262,15 @@ function discardItem(index) {
 
 // The menu the player sees when first loading the page
 // Shows player stats, equipped items, item inventory, and a button to start a game ("enter the tower")
-function loadMainMenu() {
+function loadMainMenu()
+{
+    // Save stats to save file
+    localStorage.setItem("level", level);
+    localStorage.setItem("exp", exp);
+    localStorage.setItem("expNeeded", expNeeded);
+    localStorage.setItem("equippedItems", JSON.stringify(Array.from(equippedItems)));
+    localStorage.setItem("itemInventory", JSON.stringify(itemInventory));
+
     main = document.getElementById("main")
     main.innerHTML = `
         <div id = "ui">
