@@ -21,7 +21,7 @@ main {
     text-align: center;
 }
 
-#gameArea h4 {
+#gameArea h3 {
     margin-top: 100px;
 }
 
@@ -29,4 +29,22 @@ main {
     #gameArea {
         width: 90%;
     }
+}
+
+#difSlider {
+    width: 50%;
+}
+
+#difDisplay {
+    color: #0d6efd;
+}
+
+input[type=checkbox] {
+    margin-left: 20px;
+}
+
+#start {
+    margin-top: 70px;
+    font-size: 25px;
+    width: 100px;
 }

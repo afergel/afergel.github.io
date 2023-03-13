@@ -25,30 +25,30 @@
     <!-- Main content -->
     <main>
         <div id="gameArea" class="shadow-sm bg-white rounded">
-            <h1>Mental Math Trainer</h1>
-            <h4>Difficulty</h4>
-            <input type="radio" name="dif" />
-            <input type="radio" name="dif" />
-            <input type="radio" name="dif" />
-            <input type="radio" name="dif" />
+            <div id="mainMenu">
+                <h1>Mental Math Trainer</h1>
+                <h3>Difficulty</h3>
+                <input type="range" id="difSlider" min="0" max="3" value="1" />
+                <h5 id="difDisplay">Normal</h5>
 
-            <h4>Types of Questions</h4>
+                <h3>Types of Questions</h3>
 
-            <input type="checkbox" id="add"/>
-            <label for="add">Addition</label>
+                <input type="checkbox" id="add"/>
+                <label for="add">Addition</label>
 
-            <input type="checkbox" id="subt" />
-            <label for="subt">Subtraction</label>
+                <input type="checkbox" id="subt" />
+                <label for="subt">Subtraction</label>
 
-            <input type="checkbox" id="mult"/>
-            <label for="mult">Multiplication</label>
+                <input type="checkbox" id="mult"/>
+                <label for="mult">Multiplication</label>
 
-            <input type="checkbox" id="divis" />
-            <label for="divis">Division</label>
+                <input type="checkbox" id="divis" />
+                <label for="divis">Division</label>
 
-            <br />
+                <br />
 
-            <input type="button" class="btn btn-dark" value="Start" />
+                <input type="button" class="btn btn-dark" value="Start" id="start"/>
+            </div>
         </div>
     </main>
 

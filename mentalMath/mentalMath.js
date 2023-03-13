@@ -1,22 +1,55 @@
 window.onload = () =>
 {
-    var answer = generateQuestion();
-    var input = document.getElementById("numInput");
-    input.addEventListener("input", () =>
+    addSliderEvent();
+    addStartEvent();
+}
+
+function addSliderEvent()
+{
+    difSlider = document.getElementById("difSlider");
+    difSlider.addEventListener("input", () =>
     {
-        if (input.value == answer)
+        var output;
+        switch (difSlider.value)
         {
-            input.value = "";
-            answer = generateQuestion();
+            case '0':
+                output = "Easy";
+                break;
+            case '1':
+                output = "Normal";
+                break;
+            case '2':
+                output = "Hard";
+                break;
+            case '3':
+                output = "Impossible";
+                break;
         }
+        document.getElementById("difDisplay").textContent = output;
     });
 }
 
-function generateQuestion()
+function addStartEvent()
 {
-    var num1 = Math.floor(Math.random() * 8) + 2;
-    var num2 = Math.floor(Math.random() * 8) + 2;
+    startBtn = document.getElementById("start");
+    startBtn.addEventListener("click", startGame);
+}
 
-    document.getElementById("question").textContent = num1 + " x " + num2 + " = ?";
-    return num1 * num2;
+function startGame()
+{
+    var gameArea = document.getElementById("gameArea");
+
+    // Makes a copy of the HTML for the main menu screen before clearing it
+    var mainMenu = document.getElementById("mainMenu").cloneNode(true);
+    gameArea.textContent = '';
+
+
+
+
+
+    // Re-load the main menu
+    alert("Testing");
+    gameArea.appendChild(mainMenu);
+    addSliderEvent();
+    addStartEvent();
 }
