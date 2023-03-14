@@ -130,7 +130,7 @@ function generateQuestion(add, subt, mult, divis, difficulty)
         case "mult":
             return generateMultiplicationQuestion(difficulty);
         case "divis":
-            return ["10 / 2", 5];
+            return generateDivisionQuestion(difficulty);
     }
 }
 
@@ -222,4 +222,34 @@ function generateMultiplicationQuestion(difficulty)
     }
 
     return [num1 + " x " + num2, num1 * num2];
+}
+
+function generateDivisionQuestion(difficulty)
+{
+    var num1, num2;
+
+    switch (difficulty)
+    {
+        case '0':
+            // Possible numbers: 2 through 9
+            num1 = Math.floor(2 + Math.random() * 8);
+            num2 = Math.floor(2 + Math.random() * 8);
+            break;
+        case '1':
+            // Possible numbers: 11 through 19
+            num1 = Math.floor(11 + Math.random() * (19 - 10));
+            num2 = Math.floor(11 + Math.random() * (19 - 10));
+            break;
+        case '2':
+            // Possible numbers: 21 through 99
+            num1 = Math.floor(21 + Math.random() * (99 - 20));
+            num2 = Math.floor(21 + Math.random() * (99 - 20));
+            break;
+        case '3':
+            // Possible numbers: 1001 through 9999
+            num1 = Math.floor(1001 + Math.random() * (9999 - 1000));
+            num2 = Math.floor(1001 + Math.random() * (9999 - 1000));
+    }
+
+    return [(num1 * num2) + " / " + num1, num2];
 }
