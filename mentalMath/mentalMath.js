@@ -125,18 +125,12 @@ function generateQuestion(add, subt, mult, divis, difficulty)
     {
         case "add":
             return generateAdditionQuestion(difficulty);
-            break;
         case "subt":
-            return ["3 - 1", 2];
-            break;
+            return generateSubtractionQuestion(difficulty);
         case "mult":
             return ["3 x 2", 6];
-            break;
         case "divis":
             return ["10 / 2", 5];
-            break;
-        default:
-            return ["ERROR: type -1 to continue", -1];
     }
 }
 
@@ -165,8 +159,37 @@ function generateAdditionQuestion(difficulty)
             // Possible numbers: 100000001 through 999999999
             num1 = Math.floor(100000001 + Math.random() * (999999999 - 100000000));
             num2 = Math.floor(100000001 + Math.random() * (999999999 - 100000000));
-            break;
     }
 
     return [num1 + " + " + num2, num1 + num2];
+}
+
+function generateSubtractionQuestion(difficulty)
+{
+    var num1, num2;
+
+    switch (difficulty)
+    {
+        case '0':
+            // Possible numbers: 1 through 9
+            num1 = Math.floor(1 + Math.random() * 9);
+            num2 = Math.floor(1 + Math.random() * 9);
+            break;
+        case '1':
+            // Possible numbers: 11 through 99
+            num1 = Math.floor(11 + Math.random() * (99 - 10));
+            num2 = Math.floor(11 + Math.random() * (99 - 10));
+            break;
+        case '2':
+            // Possible numbers: 1001 through 9999
+            num1 = Math.floor(1001 + Math.random() * (9999 - 1000));
+            num2 = Math.floor(1001 + Math.random() * (9999 - 1000));
+            break;
+        case '3':
+            // Possible numbers: 100000001 through 999999999
+            num1 = Math.floor(100000001 + Math.random() * (999999999 - 100000000));
+            num2 = Math.floor(100000001 + Math.random() * (999999999 - 100000000));
+    }
+
+    return [(num1 + num2) + " - " + num1, num2]
 }
