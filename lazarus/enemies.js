@@ -1,4 +1,4 @@
-[
+var enemyPoolString = `[
   {
     "name": "Angry mushroom",
     "health": 4,
@@ -134,4 +134,4 @@
     "lootTable": [ "Wayfinder's Candle" ],
     "sprite": "images/enemies/TheLight.png"
   }
-]
+]`;

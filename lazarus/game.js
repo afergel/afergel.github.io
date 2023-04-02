@@ -2,6 +2,7 @@ var level = 1
 var exp = 0
 var expNeeded = 10
 
+var itemInventory = [] // List of items the player has, but hasn't equipped
 var inventoryPage = 1
 
 // Player's base stats before equipment modifiers
@@ -20,6 +21,9 @@ var crit
 var floor // Current floor (i.e. level) the player is on in the game
 const MAX_FLOOR = 20
 const DIFFICULTY_UP = 4 // Number of floors the player goes through until the difficulty of monsters increases
+
+var enemyPool = JSON.parse(enemyPoolString);
+var itemPool = JSON.parse(itemPoolString);
 
 var currentEnemy
 var enemyMaxHealth
@@ -75,10 +79,6 @@ function Item(name, type, rarity, health, damage, dodge, crit, sprite) {
     this.sprite = sprite
 }
 
-var itemPool = []; // List of all available items
-var enemyPool = []; // List of all available enemies
-var itemInventory = []; // List of items the player has, but hasn't equipped
-
 // Load stats from save file
 if (localStorage.getItem("level") != null)
 {
@@ -108,26 +108,6 @@ if (localStorage.getItem("level") != null)
 
     equippedItems = new Map(JSON.parse(localStorage.getItem("equippedItems")));
     itemInventory = JSON.parse(localStorage.getItem("itemInventory"));
-}
-
-fetch('https://afergel.github.io/lazarus/items.json')
-    .then(response => response.json())
-    .then(data => {
-        for (let i = 0; i < data.length; i++) {
-            itemPool[i] = Object.assign(new Item, data[i])
-        }
-        fetchEnemies()
-        loadMainMenu()
-    })
-
-function fetchEnemies() {
-    fetch('https://afergel.github.io/lazarus/enemies.json')
-        .then(response => response.json())
-        .then(data => {
-            for (let i = 0; i < data.length; i++) {
-                enemyPool[i] = Object.assign(new Enemy, data[i])
-            }
-        })
 }
 
 // Displays basic item information on the right side of the "Items" menu
@@ -676,3 +656,5 @@ function levelUp() {
         document.getElementById("focusStrikeButton").innerHTML = focusStrikeButtonText
     }
 }
+
+loadMainMenu(); // Start the game

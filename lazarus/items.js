@@ -1,4 +1,4 @@
-[
+var itemPoolString = `[
   {
     "name": "Plastic knife",
     "type": "handheld",
@@ -329,4 +329,4 @@
     "dodge": 0,
     "sprite": "iamges/items/IronStomper.png"
   }
-]
+]`;
